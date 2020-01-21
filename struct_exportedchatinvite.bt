@@ -1,6 +1,8 @@
 #ifndef __STRUCT_EXPORTEDCHATINVITE__
 #define __STRUCT_EXPORTEDCHATINVITE__
 
+#include "base.bt"
+
 typedef struct _chatInviteExported { // 0xfc2e05bc
     TLString link;
 };
@@ -14,8 +16,10 @@ typedef struct ExportedChatInvite {
         _chatInviteExported val;
     else if (id == 1776236393)
         _chatInviteEmpty val;
-    else
+    else {
+        Printf("Invalid type %d for ExportedChatInvite\n", id);
         Exit(1);
+    }
 };
 
 #endif

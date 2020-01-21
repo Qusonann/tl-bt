@@ -7,13 +7,22 @@ typedef struct _chatPhoto { // 0x475cdbd5
     int dc_id;
 };
 
+typedef struct _chatPhotoOld { // 1632839530
+    FileLocation photo_small;
+    FileLocation photo_big;
+};
+
 typedef struct ChatPhoto {
     int id;
     if (id == 935395612)
         _chatPhotoEmpty val;
+    else if (id == 1632839530)
+        _chatPhotoOld val;
     else if (id == 1197267925)
         _chatPhoto val;
-    else
+    else {
+        Printf("Invalid id for ChatPhoto %d", id);
         Exit(1);
+    }
 };
 

@@ -18,8 +18,22 @@ typedef struct TLString {
             uchar pad0;
         };
     } else {
-        Printf("Not implemented long string\n");
-        Exit(2);
+        uchar l1;
+        uchar l2;
+        uchar l3;
+        char data[l1 + l2 * 256 + l3 * 256 * 256];
+        if ((l1 + l2 * 256 + l3 * 256 * 256) % 4 == 1) {
+            uchar pad0;
+            uchar pad1;
+            uchar pad2;
+        };
+        if ((l1 + l2 * 256 + l3 * 256 * 256) % 4 == 2) {
+            uchar pad0;
+            uchar pad1;
+        };
+        if ((l1 + l2 * 256 + l3 * 256 * 256) % 4 == 3) {
+            uchar pad0;
+        };
     };
 };
 
@@ -40,8 +54,22 @@ typedef struct bytes {
             uchar pad0;
         };
     } else {
-        Printf("Not implemented long bytes\n");
-        Exit(3);
+        uchar l1;
+        uchar l2;
+        uchar l3;
+        char data[l1 + l2 * 256 + l3 * 256 * 256];
+        if ((l1 + l2 * 256 + l3 * 256 * 256) % 4 == 1) {
+            uchar pad0;
+            uchar pad1;
+            uchar pad2;
+        };
+        if ((l1 + l2 * 256 + l3 * 256 * 256) % 4 == 2) {
+            uchar pad0;
+            uchar pad1;
+        };
+        if ((l1 + l2 * 256 + l3 * 256 * 256) % 4 == 3) {
+            uchar pad0;
+        };
     };
 };
 

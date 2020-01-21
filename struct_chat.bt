@@ -137,9 +137,43 @@ typedef struct _chat { // 0x3bda1bde
         ChatBannedRights default_banned_rights;
 };
 
+typedef struct _channelLayer92 { // 0xc88974ac
+    int : 6;
+    int b_username : 1; // 6
+    int : 2;
+    int b_restriction_reason : 1; // 9
+    int : 3;
+    int b_access_hash : 1; // 13
+    int b_admin_rights : 1; // 14
+    int b_banned_rights : 1; // 15
+    int : 1;
+    int b_participants_count : 1; // 17
+    int : 14;
+    int id;
+    if (b_access_hash)
+        int64 access_hash;
+    TLString title;
+    if (b_username)
+        TLString username;
+    ChatPhoto photo;
+    int date;
+    int version;
+    if (b_restriction_reason)
+        TLString restriction_reason;
+    if (b_admin_rights)
+        TLString admin_rights;
+    if (b_banned_rights)
+        TLString banned_rights;
+    if (b_participants_count)
+        TLString participants_count;
+};
+
+
 typedef struct Chat {
     int id;
-    if (id == -1683826688)
+    if (id == -930515796)
+        _channelLayer92 val;
+    else if (id == -1683826688)
         _chatEmpty val;
     else if (id == -753232354)
         _channel val;

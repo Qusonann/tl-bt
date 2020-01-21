@@ -1,6 +1,8 @@
 #ifndef __STRUCT_PHOTO__
 #define __STRUCT_PHOTO__
 
+#include "struct_photolayer82.bt"
+
 typedef struct _photo { // 0xd07504a5
     int b_has_stickers : 1; // 0
     int : 31;
@@ -10,7 +12,7 @@ typedef struct _photo { // 0xd07504a5
     int64 access_hash;
     bytes file_reference;
     int date;
-    Vector<PhotoSize> sizes;
+    VectorPhotoSize sizes;
     int dc_id;
 };
 
@@ -22,6 +24,8 @@ typedef struct Photo {
     int id;
     if (id == -797637467)
         _photo val;
+    if (id == -1836524247)
+        _photo_layer82 val;
     else if (id == 590459437)
         _photoEmpty val;
     else

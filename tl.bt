@@ -43,11 +43,6 @@ typedef struct unknown_3f0f220f {
     int unknown;
 };
 
-typedef struct unknown_8154af76 {
-    int val;
-    // TODO
-};
-
 typedef struct Object {
     int objectId;
     if (objectId == -212046591) // rpc_result
@@ -66,8 +61,8 @@ typedef struct Object {
         _gzip_packed val;
     else if (objectId == -1836524247) // _photo_layer82
         _photo_layer82 val;
-    else if (objectId == 0x8154af76)
-        unknown_8154af76 data;
+    else if (objectId == 0x76AF5481) // _channelFullOld
+        _channelFullOld data;
     else {
         Printf("Unknown object %d\n", objectId);
         Exit(1);
