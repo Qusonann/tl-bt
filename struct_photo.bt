@@ -1,0 +1,32 @@
+#ifndef __STRUCT_PHOTO__
+#define __STRUCT_PHOTO__
+
+typedef struct _photo { // 0xd07504a5
+    int b_has_stickers : 1; // 0
+    int : 31;
+    if (b_has_stickers)
+        TLBool has_stickers;
+    int64 id;
+    int64 access_hash;
+    bytes file_reference;
+    int date;
+    Vector<PhotoSize> sizes;
+    int dc_id;
+};
+
+typedef struct _photoEmpty { // 0x2331b22d
+    int64 id;
+};
+
+typedef struct Photo {
+    int id;
+    if (id == -797637467)
+        _photo val;
+    else if (id == 590459437)
+        _photoEmpty val;
+    else
+        Exit(1);
+};
+
+
+#endif

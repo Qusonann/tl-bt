@@ -1,0 +1,15 @@
+#include "base.bt"
+
+typedef struct _botCommand {
+    TLString _command;
+    TLString _description;
+};
+
+typedef struct BotCommand {
+    int id;
+    if (id == -1032140601)
+        _botCommand val;
+    else
+        Exit(1);
+};
+

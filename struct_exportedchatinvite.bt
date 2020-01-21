@@ -1,0 +1,21 @@
+#ifndef __STRUCT_EXPORTEDCHATINVITE__
+#define __STRUCT_EXPORTEDCHATINVITE__
+
+typedef struct _chatInviteExported { // 0xfc2e05bc
+    TLString link;
+};
+
+typedef struct _chatInviteEmpty { // 0x69df3769
+};
+
+typedef struct ExportedChatInvite {
+    int id;
+    if (id == -64092740)
+        _chatInviteExported val;
+    else if (id == 1776236393)
+        _chatInviteEmpty val;
+    else
+        Exit(1);
+};
+
+#endif

@@ -1,0 +1,38 @@
+#ifndef __STRUCT_CHATPARTICIPANTS__
+#define __STRUCT_CHATPARTICIPANTS__
+
+#include "struct_chatparticipant.bt"
+
+typedef struct _chatParticipantsForbidden { // 0xfc900c2b
+    int b_self_participant : 1; // 0
+    int : 31;
+    int chat_id;
+    if (b_self_participant)
+        ChatParticipant self_participant;
+};
+
+typedef struct VectorChatParticipant {
+    int id;
+    if (id != 0x1CB5C415)
+        Exit(1);
+    int size;
+    ChatParticipant items[size];
+};
+
+typedef struct _chatParticipants { // 0x3f460fed
+    int chat_id;
+    VectorChatParticipant participants;
+    int version;
+};
+
+typedef struct ChatParticipants {
+    int id;
+    if (id == -57668565)
+        _chatParticipantsForbidden val;
+    else if (id == 1061556205)
+        _chatParticipants val;
+    else
+        Exit(1);
+};
+
+#endif

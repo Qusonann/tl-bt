@@ -1,0 +1,32 @@
+#ifndef __STRUCT_PEERNOTIFYSETTINGS__
+#define __STRUCT_PEERNOTIFYSETTINGS__
+
+typedef struct _peerNotifySettings { // 0xaf509d20
+    int b_show_previews : 1; // 0
+    int b_silent : 1; // 1
+    int b_mute_until : 1; // 2
+    int b_sound : 1; // 3
+    int : 28;
+    if (b_show_previews) {
+        TLBool show_previews;
+    }
+    if (b_silent) {
+        TLBool silent;
+    }
+    if (b_mute_until) {
+        int mute_until;
+    }
+    if (b_sound) {
+        TLString sound;
+    }
+};
+
+typedef struct PeerNotifySettings {
+     int id;
+    if (id == -1353671392)
+        _peerNotifySettings val;
+    else
+        Exit(1);
+};
+
+#endif

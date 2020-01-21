@@ -1,0 +1,37 @@
+typedef struct _userStatusRecently { // 0xe26f42f1
+};
+
+typedef struct _userStatusOnline { // 0xedb93949
+    int expires;
+};
+
+typedef struct _userStatusOffline { // 0x8c703f
+    int was_online;
+};
+
+typedef struct _userStatusLastWeek { // 0x7bf09fc
+};
+
+typedef struct _userStatusEmpty { // 0x9d05049
+};
+
+typedef struct _userStatusLastMonth { // 0x77ebc742
+};
+
+typedef struct UserStatus {
+     int id;
+    if (id == -496024847)
+        _userStatusRecently val;
+    else if (id == -306628279)
+        _userStatusOnline val;
+    else if (id == 9203775)
+        _userStatusOffline val;
+    else if (id == 129960444)
+        _userStatusLastWeek val;
+    else if (id == 164646985)
+        _userStatusEmpty val;
+    else if (id == 2011940674)
+        _userStatusLastMonth val;
+    else
+        Exit(1);
+};

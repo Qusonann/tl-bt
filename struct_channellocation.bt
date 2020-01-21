@@ -1,0 +1,20 @@
+#include "struct_geopoint.bt"
+
+typedef struct _channelLocationEmpty { // 0xbfb5ad8b
+};
+
+typedef struct _channelLocation { // 0x209b82db
+    GeoPoint geo_point;
+    TLString address;
+};
+
+typedef struct ChannelLocation {
+    int id;
+    if (id == -1078612597)
+        _channelLocationEmpty val;
+    else if (id == 547062491)
+        _channelLocation val;
+    else
+        Exit(1);
+};
+

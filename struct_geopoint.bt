@@ -1,0 +1,19 @@
+typedef struct _geoPoint { // 0x296f104
+    double _long;
+    double lat;
+    int64 access_hash;
+};
+
+typedef struct _geoPointEmpty { // 0x1117dd5f
+};
+
+typedef struct GeoPoint {
+    int id;
+    if (id == 43446532)
+        _geoPoint val;
+    else if (id == 286776671)
+        _geoPointEmpty val;
+    else
+        Exit(1);
+};
+

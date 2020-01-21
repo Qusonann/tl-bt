@@ -1,0 +1,54 @@
+typedef struct _contacts__myLinkContact { // 0xd502c2d0
+};
+
+typedef struct _contacts__myLinkEmpty { // 0xfeedd3ad
+};
+
+typedef struct _contacts__myLinkUnknown { // 1599050311
+};
+
+typedef struct _contacts__foreignLinkRequested { // 0xa7801f47
+    TLBool has_phone;
+};
+
+typedef struct _contacts__foreignLinkUnknown { // 0x133421f8
+};
+
+typedef struct _contacts__foreignLinkMutual { // 0x1bea8ce1
+};
+
+typedef struct contacts__ForeignLink {
+     int id;
+    if (id == -1484775609)
+        _contacts__foreignLinkRequested val;
+    else if (id == 322183672)
+        _contacts__foreignLinkUnknown val;
+    else if (id == 468356321)
+        _contacts__foreignLinkMutual val;
+    else if (id == 0xd502c2d0)
+        _contacts__myLinkContact val;
+    else if (id == 0xfeedd3ad)
+        _contacts__myLinkEmpty val;
+    else if (id == 1599050311)
+        _contacts__myLinkUnknown val;
+    else {
+        Printf("contacts__ForeignLink invalid id %d\n", id);
+        Exit(1);
+    }
+};
+
+
+typedef struct _contactsLink { // 0x3ace484c
+    contacts__ForeignLink foreign_link;
+    contacts__ForeignLink my_link;
+    User user;
+};
+
+typedef struct ContactsLink {
+    int id;
+    if (id != 0x3ace484c) {
+        Printf("ContactsLink invalid id %d\n", id);
+        Exit(1);
+    }
+    _contactsLink data;
+};

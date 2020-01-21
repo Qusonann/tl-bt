@@ -1,0 +1,14 @@
+#ifndef __STRUCT_VECTORBOTINFO__
+#define __STRUCT_VECTORBOTINFO__
+
+#include "struct_botinfo.bt"
+
+typedef struct VectorBotInfo {
+    int id;
+    if (id != 0x1CB5C415)
+        Exit(1);
+    int size;
+    BotInfo items[size];
+};
+
+#endif

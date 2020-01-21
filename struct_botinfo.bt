@@ -1,0 +1,28 @@
+#ifndef __STRUCT_BOTINFO__
+#define __STRUCT_BOTINFO__
+
+#include "struct_botcommand.bt"
+
+typedef struct VectorBotCommand {
+    int id;
+    if (id != 0x1CB5C415)
+        Exit(1);
+    int size;
+    BotCommand items[size];
+};
+
+typedef struct _botInfo { // 0x98e81d3a
+    int user_id;
+    TLString description;
+    VectorBotCommand commands;
+};
+
+typedef struct BotInfo {
+    int id;
+    if (id == -1729618630)
+        _botInfo val;
+    else
+        Exit(1);
+};
+
+#endif

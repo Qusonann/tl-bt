@@ -1,0 +1,8 @@
+#ifndef __STRUCT_OBJECT__
+#define __STRUCT_OBJECT__
+
+typedef struct _gzip_packed { // 0x3072cfa1
+    bytes packed_data;
+};
+
+#endif

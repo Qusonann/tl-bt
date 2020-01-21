@@ -1,0 +1,19 @@
+typedef struct _chatPhotoEmpty { // 0x37c1011c
+};
+
+typedef struct _chatPhoto { // 0x475cdbd5
+    FileLocation photo_small;
+    FileLocation photo_big;
+    int dc_id;
+};
+
+typedef struct ChatPhoto {
+    int id;
+    if (id == 935395612)
+        _chatPhotoEmpty val;
+    else if (id == 1197267925)
+        _chatPhoto val;
+    else
+        Exit(1);
+};
+

@@ -1,0 +1,32 @@
+#ifndef __STRUCT_INPUTCHANNEL__
+#define __STRUCT_INPUTCHANNEL__
+
+#include "struct_inputpeer.bt"
+
+typedef struct _inputChannel { // 0xafeb712e
+    int channel_id;
+    int64 access_hash;
+};
+
+typedef struct _inputChannelEmpty { // 0xee8c1e86
+};
+
+typedef struct _inputChannelFromMessage { // 0x2a286531
+    InputPeer peer;
+    int msg_id;
+    int channel_id;
+};
+
+typedef struct InputChannel {
+    int id;
+    if (id == -1343524562)
+        _inputChannel val;
+    else if (id == -292807034)
+        _inputChannelEmpty val;
+    else if (id == 707290417)
+        _inputChannelFromMessage val;
+    else
+        Exit(1);
+};
+
+#endif

@@ -1,0 +1,80 @@
+#ifndef __BASE_BT__
+#define __BASE_BT__
+
+typedef struct TLString {
+    uchar L;
+    if (L <= 253) {
+        char data[L];
+        if ((L + 1) % 4 == 1) {
+            uchar pad0;
+            uchar pad1;
+            uchar pad2;
+        };
+        if ((L + 1) % 4 == 2) {
+            uchar pad0;
+            uchar pad1;
+        };
+        if ((L + 1) % 4 == 3) {
+            uchar pad0;
+        };
+    } else {
+        Printf("Not implemented long string\n");
+        Exit(2);
+    };
+};
+
+typedef struct bytes {
+    uchar L;
+    if (L <= 253) {
+        char data[L];
+        if ((L + 1) % 4 == 1) {
+            uchar pad0;
+            uchar pad1;
+            uchar pad2;
+        };
+        if ((L + 1) % 4 == 2) {
+            uchar pad0;
+            uchar pad1;
+        };
+        if ((L + 1) % 4 == 3) {
+            uchar pad0;
+        };
+    } else {
+        Printf("Not implemented long bytes\n");
+        Exit(3);
+    };
+};
+
+typedef struct VectorLong {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid VectorLong id %d\n", id);
+        Exit(1);
+    }
+    int size;
+    int64 items[size];
+};
+
+typedef struct _rpc_result {
+    int64 req_msg_id;
+    struct Object result;
+};
+
+typedef struct _msgs_ack {
+    VectorLong msg_ids;
+};
+
+typedef struct TLTrue {
+};
+typedef struct TLFalse {
+};
+
+typedef struct TLBool {
+    int val; // 0x997275b5 if true
+    if (val == 0x997275b5)
+        TLTrue data;
+    else
+        TLFalse data;
+};
+
+#endif

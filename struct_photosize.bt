@@ -1,0 +1,46 @@
+#ifndef __STRUCT_PHOTOSIZE__
+#define __STRUCT_PHOTOSIZE__
+
+#include "base.bt"
+#include "struct_filelocation.bt"
+
+typedef struct _photoStrippedSize { // 0xe0b0bc2e
+    TLString type;
+    bytes _bytes;
+};
+
+typedef struct _photoCachedSize { // 0xe9a734fa
+    TLString type;
+    FileLocation location;
+    int w;
+    int h;
+    bytes _bytes;
+};
+
+typedef struct _photoSizeEmpty { // 0xe17e23c
+    TLString type;
+};
+
+typedef struct _photoSize { // 0x77bfb61b
+    TLString type;
+    FileLocation location;
+    int w;
+    int h;
+    int size;
+};
+
+typedef struct PhotoSize {
+    int id;
+    if (id == -525288402)
+        _photoStrippedSize val;
+    else if (id == -374917894)
+        _photoCachedSize val;
+    else if (id == 236446268)
+        _photoSizeEmpty val;
+    else if (id == 2009052699)
+        _photoSize val;
+    else
+        Exit(1);
+};
+
+#endif

@@ -1,0 +1,77 @@
+//------------------------------------------------
+//--- 010 Editor v10.0 Binary Template
+//
+//      File: 
+//   Authors: wkejqb
+//   Version: 
+//   Purpose: Parse tg messages
+//  Category: 
+// File Mask: *.tlb
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+LittleEndian();
+FSeek(0);
+
+#include "base.bt"
+#include "struct_object.bt"
+
+#include "struct_filelocation.bt"
+#include "struct_userstatus.bt"
+#include "struct_chatparticipants.bt"
+#include "struct_userprofilephoto.bt"
+#include "struct_user.bt"
+#include "struct_contactslink.bt"
+#include "struct_peernotifysettings.bt"
+#include "struct_photo.bt"
+#include "struct_chat.bt"
+#include "struct_messages__ChatFull.bt"
+#include "struct_photolayer82.bt"
+
+
+typedef struct unknown_3f0f220f {
+    int flags;
+    User __user;
+    ContactsLink link; // ContactsMyLink in fact
+    if (flags & 4) {
+        PhotoLayer82 photo;
+    }
+    if (flags & 16) {
+        PeerNotifySettings settings;
+    }
+    int unknown;
+};
+
+typedef struct unknown_8154af76 {
+    int val;
+    // TODO
+};
+
+typedef struct Object {
+    int objectId;
+    if (objectId == -212046591) // rpc_result
+        _rpc_result data;
+    else if (objectId == 1658238041) // msgs_ack
+        _msgs_ack data;
+    else if (objectId == 253890367) // unknown_3f0f220f
+        unknown_3f0f220f data;
+    else if (objectId == 773059779) // user
+        _user data;
+    else if (objectId == 986597452) // contactsLink
+        _contactsLink data;
+    else if (objectId == -438840932) // _messages__chatFull
+        _messages__chatFull data;
+    else if (objectId == 812830625) // _gzip_packed
+        _gzip_packed val;
+    else if (objectId == -1836524247) // _photo_layer82
+        _photo_layer82 val;
+    else if (objectId == 0x8154af76)
+        unknown_8154af76 data;
+    else {
+        Printf("Unknown object %d\n", objectId);
+        Exit(1);
+    }
+};
+
+Object o;

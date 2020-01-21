@@ -1,0 +1,52 @@
+typedef struct _chatBannedRights { // 0x9f120418
+    int b_view_messages : 1; // 0
+    int b_send_messages : 1; // 1
+    int b_send_media : 1; // 2
+    int b_send_stickers : 1; // 3
+    int b_send_gifs : 1; // 4
+    int b_send_games : 1; // 5
+    int b_send_inline : 1; // 6
+    int b_embed_links : 1; // 7
+    int b_send_polls : 1; // 8
+    int : 1;
+    int b_change_info : 1; // 10
+    int : 4;
+    int b_invite_users : 1; // 15
+    int : 1;
+    int b_pin_messages : 1; // 17
+    int : 14;
+    if (b_view_messages)
+        TLBool view_messages;
+    if (b_send_messages)
+        TLBool send_messages;
+    if (b_send_media)
+        TLBool send_media;
+    if (b_send_stickers)
+        TLBool send_stickers;
+    if (b_send_gifs)
+        TLBool send_gifs;
+    if (b_send_games)
+        TLBool send_games;
+    if (b_send_inline)
+        TLBool send_inline;
+    if (b_embed_links)
+        TLBool embed_links;
+    if (b_send_polls)
+        TLBool send_polls;
+    if (b_change_info)
+        TLBool change_info;
+    if (b_invite_users)
+        TLBool invite_users;
+    if (b_pin_messages)
+        TLBool pin_messages;
+    int until_date;
+};
+
+typedef struct ChatBannedRights {
+    int id;
+    if (id == -1626209256)
+        _chatBannedRights val;
+    else
+        Exit(1);
+};
+

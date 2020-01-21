@@ -1,0 +1,28 @@
+typedef struct _userProfilePhoto { // 0xecd75d8c
+    int64 photo_id;
+    FileLocation photo_small;
+    FileLocation photo_big;
+    int dc_id;
+};
+
+typedef struct _userProfilePhoto_v1 { // -715532088
+    int64 photo_id;
+    FileLocation photo_small;
+    FileLocation photo_big;
+};
+
+typedef struct _userProfilePhotoEmpty { // 0x4f11bae1
+};
+
+typedef struct UserProfilePhoto {
+    int id;
+    if (id == -321430132)
+        _userProfilePhoto val;
+    if (id == -715532088)
+        _userProfilePhoto_v1 val;
+    else if (id == 1326562017)
+        _userProfilePhotoEmpty val;
+    else
+        Exit(1);
+};
+

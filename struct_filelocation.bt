@@ -1,0 +1,26 @@
+#ifndef __STRUCT_FILELOCATION__
+#define __STRUCT_FILELOCATION__
+
+typedef struct _FileLocation {
+    int64 volume_id;
+    int local_id;
+};
+
+typedef struct _FileLocationDeprecated {
+    int dc_id;
+    int64 volume_id;
+    int local_id;
+    int64 secret;
+};
+
+typedef struct FileLocation {
+    int id;
+    if (id == 0xbc7fc6cd)
+        _FileLocation data;
+    else if (id == 1406570614)
+        _FileLocationDeprecated data;
+    else
+        Exit(1);
+};
+
+#endif

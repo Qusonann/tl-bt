@@ -1,0 +1,44 @@
+#ifndef __STRUCT_STICKERSET__
+#define __STRUCT_STICKERSET__
+
+#include "struct_photosize.bt"
+
+typedef struct _stickerSet { // 0xeeb46f27
+    int b_installed_date : 1; // 0
+    int b_archived : 1; // 1
+    int b_official : 1; // 2
+    int b_masks : 1; // 3
+    int b_thumb_dc_id : 1; // 4
+    int b_animated : 1; // 5
+    int : 26;
+    if (b_archived)
+        TLBool archived;
+    if (b_official)
+        TLBool official;
+    if (b_masks)
+        TLBool masks;
+    if (b_animated)
+        TLBool animated;
+    if (b_installed_date)
+        int installed_date;
+    int64 id;
+    int64 access_hash;
+    TLString title;
+    TLString short_name;
+    if (b_thumb)
+        PhotoSize thumb;
+    if (b_thumb_dc_id)
+        int thumb_dc_id;
+    int count;
+    int hash;
+};
+
+typedef struct StickerSet {
+    int id;
+    if (id == -290164953)
+        _stickerSet val;
+    else
+        Exit(1);
+};
+
+#endif

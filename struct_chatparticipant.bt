@@ -1,0 +1,32 @@
+#ifndef __STRUCT_CHATPARTICIPANT__
+#define __STRUCT_CHATPARTICIPANT__
+
+typedef struct _chatParticipant { // 0xc8d7493e
+    int user_id;
+    int inviter_id;
+    int date;
+};
+
+typedef struct _chatParticipantCreator { // 0xda13538a
+    int user_id;
+};
+
+typedef struct _chatParticipantAdmin { // 0xe2d6e436
+    int user_id;
+    int inviter_id;
+    int date;
+};
+
+typedef struct ChatParticipant {
+    int id;
+    if (id == -925415106)
+        _chatParticipant val;
+    else if (id == -636267638)
+        _chatParticipantCreator val;
+    else if (id == -489233354)
+        _chatParticipantAdmin val;
+    else
+        Exit(1);
+};
+
+#endif

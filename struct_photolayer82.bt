@@ -1,0 +1,46 @@
+#ifndef __STRUCT_PHOTOLAYER82__
+#define __STRUCT_PHOTOLAYER82__
+
+#include "struct_photosize.bt"
+
+typedef struct VectorPhotoSize {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid VectorPhotoSize id %d\n", id);
+        Exit(1);
+    }
+    int size;
+    PhotoSize items[size];
+};
+
+
+
+/*typedef struct _Document { // 0x87232bc7
+    int64 id;
+    int64 access_hash;
+    int date;
+    TLString mime_type;
+    int size;
+    PhotoSize thumb;
+    int dc_id;
+    int version;
+    DocAttr attributes;
+};*/
+
+typedef struct _photo_layer82 { // 0x9288dd29
+    int flags;
+    int64 id;
+    int64 access_hash;
+    int date;
+    VectorPhotoSize sizes;
+};
+
+typedef struct PhotoLayer82 {
+    int id;
+    if (id == -1836524247)
+        _photo_layer82 val;
+    else
+        Exit(1);
+};
+
+#endif

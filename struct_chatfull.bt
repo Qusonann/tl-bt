@@ -1,0 +1,126 @@
+#include "struct_vectorbotinfo.bt"
+#include "struct_chatparticipants.bt"
+#include "struct_photo.bt"
+#include "struct_peernotifysettings.bt"
+#include "struct_exportedchatinvite.bt"
+#include "struct_stickerset.bt"
+#include "struct_channellocation.bt"
+
+typedef struct _chatFull { // 0x1b7c9db3
+    int : 2;
+    int b_chat_photo : 1; // 2
+    int b_bot_info : 1; // 3
+    int : 2;
+    int b_pinned_msg_id : 1; // 6
+    int b_can_set_username : 1; // 7
+    int b_has_scheduled : 1; // 8
+    int : 2;
+    int b_folder_id : 1; // 11
+    int : 20;
+    if (b_can_set_username)
+        TLBool can_set_username;
+    if (b_has_scheduled)
+        TLBool has_scheduled;
+    int id;
+    TLString about;
+    ChatParticipants participants;
+    if (b_chat_photo)
+        Photo chat_photo;
+    PeerNotifySettings notify_settings;
+    ExportedChatInvite exported_invite;
+    if (b_bot_info)
+        VectorBotInfo bot_info;
+    if (b_pinned_msg_id)
+        int pinned_msg_id;
+    if (b_folder_id)
+        int folder_id;
+};
+
+typedef struct _channelFull { // 0x2d895c74
+    int b_participants_count : 1; // 0
+    int b_admins_count : 1; // 1
+    int b_banned_count : 1; // 2
+    int b_can_view_participants : 1; // 3
+    int b_migrated_from_max_id : 1; // 4
+    int b_pinned_msg_id : 1; // 5
+    int b_can_set_username : 1; // 6
+    int b_can_set_stickers : 1; // 7
+    int b_stickerset : 1; // 8
+    int b_available_min_id : 1; // 9
+    int b_hidden_prehistory : 1; // 10
+    int b_folder_id : 1; // 11
+    int b_can_view_stats : 1; // 12
+    int b_online_count : 1; // 13
+    int b_linked_chat_id : 1; // 14
+    int b_location : 1; // 15
+    int b_can_set_location : 1; // 16
+    int b_slowmode_seconds : 1; // 17
+    int b_slowmode_next_send_date : 1; // 18
+    int b_has_scheduled : 1; // 19
+    int : 12;
+    if (b_can_view_participants)
+        TLBool can_view_participants;
+    if (b_can_set_username)
+        TLBool can_set_username;
+    if (b_can_set_stickers)
+        TLBool can_set_stickers;
+    if (b_hidden_prehistory)
+        TLBool hidden_prehistory;
+    if (b_can_view_stats)
+        TLBool can_view_stats;
+    if (b_can_set_location)
+        TLBool can_set_location;
+    if (b_has_scheduled)
+        TLBool has_scheduled;
+    int id;
+    TLString about;
+    if (b_participants_count)
+        int participants_count;
+    if (b_admins_count)
+        int admins_count;
+    if (b_kicked_count)
+        int kicked_count;
+    if (b_banned_count)
+        int banned_count;
+    if (b_online_count)
+        int online_count;
+    int read_inbox_max_id;
+    int read_outbox_max_id;
+    int unread_count;
+    Photo chat_photo;
+    PeerNotifySettings notify_settings;
+    ExportedChatInvite exported_invite;
+    VectorBotInfo bot_info;
+    if (b_migrated_from_chat_id)
+        int migrated_from_chat_id;
+    if (b_migrated_from_max_id)
+        int migrated_from_max_id;
+    if (b_pinned_msg_id)
+        int pinned_msg_id;
+    if (b_stickerset)
+        StickerSet stickerset;
+    if (b_available_min_id)
+        int available_min_id;
+    if (b_folder_id)
+        int folder_id;
+    if (b_linked_chat_id)
+        int linked_chat_id;
+    if (b_location)
+        ChannelLocation location;
+    if (b_slowmode_seconds)
+        int slowmode_seconds;
+    if (b_slowmode_next_send_date)
+        int slowmode_next_send_date;
+    int pts;
+};
+
+typedef struct ChatFull {
+    int id;
+    if (id == 461151667)
+        _chatFull val;
+    else if (id == 763976820)
+        _channelFull val;
+    else
+        Exit(1);
+};
+

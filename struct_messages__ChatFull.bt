@@ -1,0 +1,40 @@
+#ifndef __STRUCT_MESSAGES__CHATFULL__
+#define __STRUCT_MESSAGES__CHATFULL__
+
+#include "struct_exportedchatinvite.bt"
+#include "struct_chatfull.bt"
+
+
+typedef struct VectorChat {
+    int id;
+    if (id != 0x1CB5C415)
+        Exit(1);
+    int size;
+    Chat items[size];
+};
+
+typedef struct VectorUser {
+    int id;
+    if (id != 0x1CB5C415)
+        Exit(1);
+    int size;
+    User items[size];
+};
+
+typedef struct _messages__chatFull {
+    ChatFull full_chat;
+    VectorChat chats;
+    VectorUser users;
+};
+
+typedef struct messages__ChatFull {
+     int id;
+    if (id == -438840932)
+        _messages__chatFull val;
+    else {
+        Printf("Invalid id for messages__ChatFull: %d\n", id);
+        Exit(1);
+    }
+};
+
+#endif

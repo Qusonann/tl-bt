@@ -1,0 +1,66 @@
+typedef struct _user {
+    // int flags;
+    int b_access_hash : 1; // 0
+    int b_first_name : 1;  // 1
+    int b_last_name : 1;   // 2
+    int b_username : 1;  // 3
+    int b_phone : 1;  // 4
+    int b_photo : 1;  // 5
+    int b_status : 1;  // 6
+    int : 7;
+    int b_bot_info_version : 1; // 14
+    int : 3;
+    int b_restriction_reason : 1; // 18
+    int b_inline_placeholder : 1; // 19
+    int : 2;
+    int b_lang_code: 1; // 22
+    int b_remaining  : 9; // ...
+
+    int id;
+    if (b_access_hash) {
+        int64 access_hash;
+    }
+    if (b_first_name) {
+        TLString first_name;
+    }
+    if (b_last_name) {
+        TLString last_name;
+    }
+    if (b_username) {
+        TLString username;
+    }
+    if (b_phone) {
+        TLString phone;
+    }
+    if (b_photo) {
+        UserProfilePhoto photo;
+    }
+    if (b_status) {
+        UserStatus status;
+    }
+    if (b_bot_info_version) {
+        int bot_info_version;
+    }
+    if (b_restriction_reason) {
+        TLString restriction_reason;
+    }
+    if (b_inline_placeholder) {
+        TLString bot_inline_placeholder;
+    }
+    if (b_lang_code) {
+        TLString lang_code;
+    }
+};
+
+typedef struct userEmpty {
+};
+
+typedef struct User {
+    int id;
+    if (id == 773059779)
+        _user __user;
+    else if (id == 0x200250ba)
+        userEmpty __user;
+    else
+        Exit(1);
+};
