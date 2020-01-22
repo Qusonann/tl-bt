@@ -1,0 +1,27 @@
+#ifndef __STRUCT_RESTRICTIONREASON__
+#define __STRUCT_RESTRICTIONREASON__
+typedef struct _restrictionReason { // 0xd072acb4
+    TLString platform;
+    TLString reason;
+    TLString text;
+};
+
+typedef struct RestrictionReason {
+    int id;
+    if (id == -797791052)
+        _restrictionReason val;
+    else {
+        Printf("Invalid id %d for RestrictionReason", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorRestrictionReason {
+    int id;
+    if (id != 0x1CB5C415)
+        Exit(1);
+    int size;
+    RestrictionReason items[size];
+};
+
+#endif

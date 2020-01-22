@@ -28,6 +28,8 @@ FSeek(0);
 #include "struct_chat.bt"
 #include "struct_messages__ChatFull.bt"
 #include "struct_photolayer82.bt"
+#include "struct_contacts__Found.bt"
+#include "struct_restrictionreason.bt"
 
 
 typedef struct unknown_3f0f220f {
@@ -63,6 +65,14 @@ typedef struct Object {
         _photo_layer82 val;
     else if (objectId == 0x76AF5481) // _channelFullOld
         _channelFullOld data;
+    else if (objectId == 0xd31a961e)
+        _channel val;
+    else if (objectId == 0xc88974ac)
+        _channelOld val;
+    else if (objectId == -1290580579)
+        _contacts__found val;
+    else if (objectId == -797791052)
+        _restrictionReason val;
     else {
         Printf("Unknown object %d\n", objectId);
         Exit(1);

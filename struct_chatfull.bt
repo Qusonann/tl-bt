@@ -17,10 +17,6 @@ typedef struct _chatFull { // 0x1b7c9db3
     int : 2;
     int b_folder_id : 1; // 11
     int : 20;
-    if (b_can_set_username)
-        TLBool can_set_username;
-    if (b_has_scheduled)
-        TLBool has_scheduled;
     int id;
     TLString about;
     ChatParticipants participants;
@@ -58,20 +54,6 @@ typedef struct _channelFull { // 0x2d895c74
     int b_slowmode_next_send_date : 1; // 18
     int b_has_scheduled : 1; // 19
     int : 12;
-    if (b_can_view_participants)
-        TLBool can_view_participants;
-    if (b_can_set_username)
-        TLBool can_set_username;
-    if (b_can_set_stickers)
-        TLBool can_set_stickers;
-    if (b_hidden_prehistory)
-        TLBool hidden_prehistory;
-    if (b_can_view_stats)
-        TLBool can_view_stats;
-    if (b_can_set_location)
-        TLBool can_set_location;
-    if (b_has_scheduled)
-        TLBool has_scheduled;
     int id;
     TLString about;
     if (b_participants_count)
@@ -127,14 +109,6 @@ typedef struct _channelFullOld { // 0x76af5481
     int b_available_min_id : 1; // 9
     int b_hidden_prehistory : 1; // 10
     int : 21;
-    if (b_can_view_participants)
-        TLBool can_view_participants;
-    if (b_can_set_username)
-        TLBool can_set_username;
-    if (b_can_set_stickers)
-        TLBool can_set_stickers;
-    if (b_hidden_prehistory)
-        TLBool hidden_prehistory;
     int id;
     TLString about;
     if (b_participants_count)

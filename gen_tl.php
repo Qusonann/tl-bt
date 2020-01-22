@@ -12,6 +12,12 @@ if (isset($argv[2])) {
     $filterType = $argv[2];
 }
 
+if (isset($filterType)) {
+    $type_ = strtoupper(str_replace('.', '__', $filterType));
+    echo "#ifndef __STRUCT_{$type_}__\n";
+    echo "#define __STRUCT_{$type_}__\n";
+}
+
 /**
  * @param string $filename
  * @return arrray [constructors, methods]
@@ -75,6 +81,8 @@ foreach ($spec['constructors'] as $ctor) {
             }
         }
         if (strpos($param['type'], 'Vector<')) {
+            $param['type'] = str_replace('>', '', $param['type']);
+            $param['type'] = str_replace('<', '', $param['type']);
             //TODO gen vector type?
         }
         switch ($param['type']) {
@@ -93,6 +101,7 @@ foreach ($spec['constructors'] as $ctor) {
             break;
             case 'true':
             case 'false':
+            break;
             case 'bool':
             case 'Bool':
             $type = 'TLBool';
@@ -102,6 +111,9 @@ foreach ($spec['constructors'] as $ctor) {
             $type = "{$param['type']}";
             break;
 
+        }
+        if ($param['type'] === 'true' || $param['type'] === 'false') {
+            continue;
         }
         if ($type) {
             $fields[] = "$prefix$tab$type {$param['name']};\n";
@@ -154,7 +166,24 @@ foreach ($predicatesByType as $type => $predicates) {
         echo "$tab{$tab}_$typename val;\n";
         $else = true;
     }
-    echo "{$tab}else\n";
+    echo "{$tab}else {\n";
+    echo "$tab{$tab}Printf(\"Invalid id %d for $type\", id);\n";
     echo "$tab{$tab}Exit(1);\n";
+    echo "$tab}\n";
     echo "};\n\n";
+    echo <<<MSG
+typedef struct Vector$type {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for Vector$type\\n", id);
+        Exit(1);
+    }
+    int size;
+    $type items[size] <optimize=false>;
+};
+
+MSG;
+}
+if($filterType) {
+    echo "#endif\n";
 }

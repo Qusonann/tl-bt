@@ -1,0 +1,23 @@
+#ifndef __STRUCT_CONTACTS_FOUND__
+#define __STRUCT_CONTACTS_FOUND__
+
+#include "struct_peer.bt"
+#include "struct_chat.bt"
+#include "struct_user.bt"
+
+typedef struct _contacts__found { // 0xb3134d9d
+    VectorPeer my_results;
+    VectorPeer results;
+    VectorChat chats;
+    VectorUser users;
+};
+
+typedef struct contacts__Found {
+    int id;
+    if (id == -1290580579)
+        _contacts__found val;
+    else
+        Exit(1);
+};
+
+#endif

@@ -10,22 +10,6 @@ typedef struct _chatAdminRights { // 0x5fb224d5
     int : 1;
     int b_add_admins : 1; // 9
     int : 22;
-    if (b_change_info)
-        TLBool change_info;
-    if (b_post_messages)
-        TLBool post_messages;
-    if (b_edit_messages)
-        TLBool edit_messages;
-    if (b_delete_messages)
-        TLBool delete_messages;
-    if (b_ban_users)
-        TLBool ban_users;
-    if (b_invite_users)
-        TLBool invite_users;
-    if (b_pin_messages)
-        TLBool pin_messages;
-    if (b_add_admins)
-        TLBool add_admins;
 };
 
 typedef struct ChatAdminRights {

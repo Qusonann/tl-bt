@@ -1,3 +1,6 @@
+#ifndef __STRUCT_USER__
+#define __STRUCT_USER__
+
 typedef struct _user {
     // int flags;
     int b_access_hash : 1; // 0
@@ -64,3 +67,13 @@ typedef struct User {
     else
         Exit(1);
 };
+
+typedef struct VectorUser {
+    int id;
+    if (id != 0x1CB5C415)
+        Exit(1);
+    int size;
+    User items[size] <optimize=false>;
+};
+
+#endif

@@ -1,0 +1,112 @@
+#ifndef __STRUCT_CHAT__
+#define __STRUCT_CHAT__
+typedef struct _chatEmpty { // 0x9ba2d800
+    int id;
+};
+
+typedef struct _channel { // 0xc88974ac
+    int b_creator : 1; // 0
+    int : 1;
+    int b_left : 1; // 2
+    int b_editor : 1; // 3
+    int : 1;
+    int b_broadcast : 1; // 5
+    int b_username : 1; // 6
+    int b_verified : 1; // 7
+    int b_megagroup : 1; // 8
+    int b_restriction_reason : 1; // 9
+    int b_democracy : 1; // 10
+    int b_signatures : 1; // 11
+    int b_min : 1; // 12
+    int b_access_hash : 1; // 13
+    int b_admin_rights : 1; // 14
+    int b_banned_rights : 1; // 15
+    int : 1;
+    int b_participants_count : 1; // 17
+    int : 14;
+    int id;
+    if (b_access_hash)
+        int64 access_hash;
+    TLString title;
+    if (b_username)
+        TLString username;
+    ChatPhoto photo;
+    int date;
+    int version;
+    if (b_restriction_reason)
+        TLString restriction_reason;
+    if (b_admin_rights)
+        ChannelAdminRights admin_rights;
+    if (b_banned_rights)
+        ChannelBannedRights banned_rights;
+    if (b_participants_count)
+        int participants_count;
+};
+
+typedef struct _chat { // 0xd91cdd54
+    int b_creator : 1; // 0
+    int b_kicked : 1; // 1
+    int b_left : 1; // 2
+    int b_admins_enabled : 1; // 3
+    int b_admin : 1; // 4
+    int b_deactivated : 1; // 5
+    int b_migrated_to : 1; // 6
+    int : 25;
+    int id;
+    TLString title;
+    ChatPhoto photo;
+    int participants_count;
+    int date;
+    int version;
+    if (b_migrated_to)
+        InputChannel migrated_to;
+};
+
+typedef struct _chatForbidden { // 0x7328bdb
+    int id;
+    TLString title;
+};
+
+typedef struct _channelForbidden { // 0x289da732
+    int : 5;
+    int b_broadcast : 1; // 5
+    int : 2;
+    int b_megagroup : 1; // 8
+    int : 7;
+    int b_until_date : 1; // 16
+    int : 15;
+    int id;
+    int64 access_hash;
+    TLString title;
+    if (b_until_date)
+        int until_date;
+};
+
+typedef struct Chat {
+    int id;
+    if (id == -1683826688)
+        _chatEmpty val;
+    else if (id == -930515796)
+        _channel val;
+    else if (id == -652419756)
+        _chat val;
+    else if (id == 120753115)
+        _chatForbidden val;
+    else if (id == 681420594)
+        _channelForbidden val;
+    else {
+        Printf("Invalid id %d for Chat", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorChat {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorChat\n", id);
+        Exit(1);
+    }
+    int size;
+    Chat items[size] <optimize=false>;
+};
+#endif

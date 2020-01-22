@@ -11,16 +11,6 @@ typedef struct _stickerSet { // 0xeeb46f27
     int b_thumb_dc_id : 1; // 4
     int b_animated : 1; // 5
     int : 26;
-    if (b_archived)
-        TLBool archived;
-    if (b_official)
-        TLBool official;
-    if (b_masks)
-        TLBool masks;
-    if (b_animated)
-        TLBool animated;
-    if (b_installed_date)
-        int installed_date;
     int64 id;
     int64 access_hash;
     TLString title;

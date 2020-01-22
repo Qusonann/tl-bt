@@ -5,6 +5,11 @@
 #include "struct_chatadminrights.bt"
 #include "struct_chatbannedrights.bt"
 #include "struct_inputchannel.bt"
+#include "struct_restrictionreason.bt"
+
+// layer 86
+#include "struct_channeladminrights.bt"
+#include "struct_channelbannedrights.bt"
 
 typedef struct _chatEmpty { // 0x9ba2d800
     int id;
@@ -34,30 +39,6 @@ typedef struct _channel { // 0xd31a961e
     int b_has_geo : 1; // 21
     int b_slowmode_enabled : 1; // 22
     int : 9;
-    if (b_creator)
-        TLBool creator;
-    if (b_left)
-        TLBool left;
-    if (b_broadcast)
-        TLBool broadcast;
-    if (b_verified)
-        TLBool verified;
-    if (b_megagroup)
-        TLBool megagroup;
-    if (b_restricted)
-        TLBool restricted;
-    if (b_signatures)
-        TLBool signatures;
-    if (b_min)
-        TLBool min;
-    if (b_scam)
-        TLBool scam;
-    if (b_has_link)
-        TLBool has_link;
-    if (b_has_geo)
-        TLBool has_geo;
-    if (b_slowmode_enabled)
-        TLBool slowmode_enabled;
     int id;
     if (b_access_hash)
         int64 access_hash;
@@ -68,7 +49,7 @@ typedef struct _channel { // 0xd31a961e
     int date;
     int version;
     if (b_restriction_reason)
-        Vector<RestrictionReason> restriction_reason;
+        VectorRestrictionReason restriction_reason;
     if (b_admin_rights)
         ChatAdminRights admin_rights;
     if (b_banned_rights)
@@ -92,10 +73,6 @@ typedef struct _channelForbidden { // 0x289da732
     int : 7;
     int b_until_date : 1; // 16
     int : 15;
-    if (b_broadcast)
-        TLBool broadcast;
-    if (b_megagroup)
-        TLBool megagroup;
     int id;
     int64 access_hash;
     TLString title;
@@ -115,14 +92,6 @@ typedef struct _chat { // 0x3bda1bde
     int : 3;
     int b_default_banned_rights : 1; // 18
     int : 13;
-    if (b_creator)
-        TLBool creator;
-    if (b_kicked)
-        TLBool kicked;
-    if (b_left)
-        TLBool left;
-    if (b_deactivated)
-        TLBool deactivated;
     int id;
     TLString title;
     ChatPhoto photo;
@@ -137,12 +106,20 @@ typedef struct _chat { // 0x3bda1bde
         ChatBannedRights default_banned_rights;
 };
 
-typedef struct _channelLayer92 { // 0xc88974ac
-    int : 6;
+typedef struct _channelOld { // 0xc88974ac
+    int b_creator : 1; // 0
+    int : 1;
+    int b_left : 1; // 2
+    int b_editor : 1; // 3
+    int : 1;
+    int b_broadcast : 1; // 5
     int b_username : 1; // 6
-    int : 2;
+    int b_verified : 1; // 7
+    int b_megagroup : 1; // 8
     int b_restriction_reason : 1; // 9
-    int : 3;
+    int b_democracy : 1; // 10
+    int b_signatures : 1; // 11
+    int b_min : 1; // 12
     int b_access_hash : 1; // 13
     int b_admin_rights : 1; // 14
     int b_banned_rights : 1; // 15
@@ -161,30 +138,39 @@ typedef struct _channelLayer92 { // 0xc88974ac
     if (b_restriction_reason)
         TLString restriction_reason;
     if (b_admin_rights)
-        TLString admin_rights;
+        ChannelAdminRights admin_rights;
     if (b_banned_rights)
-        TLString banned_rights;
+        ChannelBannedRights banned_rights;
     if (b_participants_count)
-        TLString participants_count;
+        int participants_count;
 };
-
 
 typedef struct Chat {
     int id;
-    if (id == -930515796)
-        _channelLayer92 val;
-    else if (id == -1683826688)
+    if (id == -1683826688)
         _chatEmpty val;
-    else if (id == -753232354)
+    else if (id == 0xd31a961e)
         _channel val;
+    else if (id == 0xc88974ac)
+        _channelOld val;
     else if (id == 120753115)
         _chatForbidden val;
     else if (id == 681420594)
         _channelForbidden val;
     else if (id == 1004149726)
         _chat val;
-    else
+    else {
+        Printf("Invalid id %d for Chat\n", id);
         Exit(1);
+    }
+};
+
+typedef struct VectorChat {
+    int id;
+    if (id != 0x1CB5C415)
+        Exit(1);
+    int size;
+    Chat items[size] <optimize=false>;
 };
 
 #endif

@@ -21,7 +21,7 @@ typedef struct ChatPhoto {
     else if (id == 1197267925)
         _chatPhoto val;
     else {
-        Printf("Invalid id for ChatPhoto %d", id);
+        Printf("Invalid id for ChatPhoto %d\n", id);
         Exit(1);
     }
 };

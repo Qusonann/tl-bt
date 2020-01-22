@@ -15,30 +15,6 @@ typedef struct _chatBannedRights { // 0x9f120418
     int : 1;
     int b_pin_messages : 1; // 17
     int : 14;
-    if (b_view_messages)
-        TLBool view_messages;
-    if (b_send_messages)
-        TLBool send_messages;
-    if (b_send_media)
-        TLBool send_media;
-    if (b_send_stickers)
-        TLBool send_stickers;
-    if (b_send_gifs)
-        TLBool send_gifs;
-    if (b_send_games)
-        TLBool send_games;
-    if (b_send_inline)
-        TLBool send_inline;
-    if (b_embed_links)
-        TLBool embed_links;
-    if (b_send_polls)
-        TLBool send_polls;
-    if (b_change_info)
-        TLBool change_info;
-    if (b_invite_users)
-        TLBool invite_users;
-    if (b_pin_messages)
-        TLBool pin_messages;
     int until_date;
 };
 

@@ -1,0 +1,36 @@
+#ifndef __STRUCT_PEER__
+#define __STRUCT_PEER__
+
+typedef struct _peerUser { // 0x9db1bc6d
+    int user_id;
+};
+
+typedef struct _peerChat { // 0xbad0e5bb
+    int chat_id;
+};
+
+typedef struct _peerChannel { // 0xbddde532
+    int channel_id;
+};
+
+typedef struct Peer {
+    int id;
+    if (id == -1649296275)
+        _peerUser val;
+    else if (id == -1160714821)
+        _peerChat val;
+    else if (id == -1109531342)
+        _peerChannel val;
+    else
+        Exit(1);
+};
+
+typedef struct VectorPeer {
+    int id;
+    if (id != 0x1CB5C415)
+        Exit(1);
+    int size;
+    Peer items[size] <optimize=false>;
+};
+
+#endif

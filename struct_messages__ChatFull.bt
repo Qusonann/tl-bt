@@ -5,22 +5,6 @@
 #include "struct_chatfull.bt"
 
 
-typedef struct VectorChat {
-    int id;
-    if (id != 0x1CB5C415)
-        Exit(1);
-    int size;
-    Chat items[size];
-};
-
-typedef struct VectorUser {
-    int id;
-    if (id != 0x1CB5C415)
-        Exit(1);
-    int size;
-    User items[size];
-};
-
 typedef struct _messages__chatFull {
     ChatFull full_chat;
     VectorChat chats;

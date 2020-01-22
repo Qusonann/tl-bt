@@ -101,8 +101,12 @@ typedef struct TLBool {
     int val; // 0x997275b5 if true
     if (val == 0x997275b5)
         TLTrue data;
-    else
+    else if (val == 0xbc799737)
         TLFalse data;
+    else {
+        //Printf("Invalid bool value %d\n", val);
+        //Exit(1);
+    }
 };
 
 #endif
