@@ -1,35 +1,37 @@
-#ifndef __STRUCT_CHANNELBANNEDRIGHTS__
-#define __STRUCT_CHANNELBANNEDRIGHTS__
-typedef struct _channelBannedRights { // 0x58cf4249
-    int b_view_messages : 1; // 0
-    int b_send_messages : 1; // 1
-    int b_send_media : 1; // 2
-    int b_send_stickers : 1; // 3
-    int b_send_gifs : 1; // 4
-    int b_send_games : 1; // 5
-    int b_send_inline : 1; // 6
-    int b_embed_links : 1; // 7
-    int : 24;
-    int until_date;
+#ifndef __STRUCT_CHANNELADMINRIGHTS__
+#define __STRUCT_CHANNELADMINRIGHTS__
+typedef struct _channelAdminRights { // 0x5d7ceba5
+    int b_change_info : 1; // 0
+    int b_post_messages : 1; // 1
+    int b_edit_messages : 1; // 2
+    int b_delete_messages : 1; // 3
+    int b_ban_users : 1; // 4
+    int b_invite_users : 1; // 5
+    int b_invite_link : 1; // 6
+    int b_pin_messages : 1; // 7
+    int : 1;
+    int b_add_admins : 1; // 9
+    int b_manage_call : 1; // 10
+    int : 21;
 };
 
-typedef struct ChannelBannedRights {
+typedef struct ChannelAdminRights {
     int id;
-    if (id == 1489977929)
-        _channelBannedRights val;
+    if (id == 1568467877)
+        _channelAdminRights val;
     else {
-        Printf("Invalid id %d for ChannelBannedRights", id);
+        Printf("Invalid id %d for ChannelAdminRights", id);
         Exit(1);
     }
 };
 
-typedef struct VectorChannelBannedRights {
+typedef struct VectorChannelAdminRights {
     int id;
     if (id != 0x1CB5C415) {
-        Printf("Invalid id %d for VectorChannelBannedRights\n", id);
+        Printf("Invalid id %d for VectorChannelAdminRights\n", id);
         Exit(1);
     }
     int size;
-    ChannelBannedRights items[size] <optimize=false>;
+    ChannelAdminRights items[size] <optimize=false>;
 };
 #endif
