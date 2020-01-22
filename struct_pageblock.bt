@@ -1,0 +1,257 @@
+#ifndef __STRUCT_PAGEBLOCK__
+#define __STRUCT_PAGEBLOCK__
+#include "struct_pagecaption.bt"
+#include "struct_richtext.bt"
+#include "struct_geopoint.bt"
+#include "struct_pagetablerow.bt"
+#include "struct_chat.bt"
+#include "struct_pagerelatedarticle.bt"
+
+struct PageBlock;
+struct VectorPageBlock;
+struct VectorPageListOrderedItem;
+struct VectorPageListItem;
+
+typedef struct _pageBlockAudio { // 0x804361ea
+    int64 audio_id;
+    PageCaption caption;
+};
+
+typedef struct _pageBlockSubtitle { // 0x8ffa9a1f
+    RichText text;
+};
+
+typedef struct _pageBlockOrderedList { // 0x9a8ae1e1
+    VectorPageListOrderedItem items;
+};
+
+typedef struct _pageBlockMap { // 0xa44f3ef6
+    GeoPoint geo;
+    int zoom;
+    int w;
+    int h;
+    PageCaption caption;
+};
+
+typedef struct _pageBlockEmbed { // 0xa8718dc5
+    int b_full_width : 1; // 0
+    int b_url : 1; // 1
+    int b_html : 1; // 2
+    int b_allow_scrolling : 1; // 3
+    int b_poster_photo_id : 1; // 4
+    int b_h : 1; // 5
+    int : 26;
+    if (b_url)
+        TLString url;
+    if (b_html)
+        TLString html;
+    if (b_poster_photo_id)
+        int64 poster_photo_id;
+    if (b_w)
+        int w;
+    if (b_h)
+        int h;
+    PageCaption caption;
+};
+
+typedef struct _pageBlockAuthorDate { // 0xbaafe5e0
+    RichText author;
+    int published_date;
+};
+
+typedef struct _pageBlockTable { // 0xbf4dea82
+    int b_bordered : 1; // 0
+    int b_striped : 1; // 1
+    int : 30;
+    RichText title;
+    VectorPageTableRow rows;
+};
+
+typedef struct _pageBlockHeader { // 0xbfd064ec
+    RichText text;
+};
+
+typedef struct _pageBlockPreformatted { // 0xc070d93e
+    RichText text;
+    TLString language;
+};
+
+typedef struct _pageBlockAnchor { // 0xce0d37b0
+    TLString name;
+};
+
+typedef struct _pageBlockDivider { // 0xdb20b188
+};
+
+typedef struct _pageBlockList { // 0xe4e88011
+    VectorPageListItem items;
+};
+
+typedef struct _pageBlockChannel { // 0xef1751b5
+    Chat channel;
+};
+
+typedef struct _pageBlockSubheader { // 0xf12bb6e1
+    RichText text;
+};
+
+typedef struct _pageBlockEmbedPost { // 0xf259a80b
+    TLString url;
+    int64 webpage_id;
+    int64 author_photo_id;
+    TLString author;
+    int date;
+    VectorPageBlock blocks;
+    PageCaption caption;
+};
+
+typedef struct _pageBlockSlideshow { // 0x31f9590
+    VectorPageBlock items;
+    PageCaption caption;
+};
+
+typedef struct _pageBlockUnsupported { // 0x13567e8a
+};
+
+typedef struct _pageBlockRelatedArticles { // 0x16115a96
+    RichText title;
+    VectorPageRelatedArticle articles;
+};
+
+typedef struct _pageBlockPhoto { // 0x1759c560
+    int b_webpage_id : 1; // 0
+    int : 31;
+    int64 photo_id;
+    PageCaption caption;
+    if (b_url)
+        TLString url;
+    if (b_webpage_id)
+        int64 webpage_id;
+};
+
+typedef struct _pageBlockKicker { // 0x1e148390
+    RichText text;
+};
+
+typedef struct _pageBlockBlockquote { // 0x263d7c26
+    RichText text;
+    RichText caption;
+};
+
+typedef struct _pageBlockCover { // 0x39f23300
+    PageBlock cover;
+};
+
+typedef struct _pageBlockParagraph { // 0x467a0766
+    RichText text;
+};
+
+typedef struct _pageBlockFooter { // 0x48870999
+    RichText text;
+};
+
+typedef struct _pageBlockPullquote { // 0x4f4456d3
+    RichText text;
+    RichText caption;
+};
+
+typedef struct _pageBlockCollage { // 0x65a0fa4d
+    VectorPageBlock items;
+    PageCaption caption;
+};
+
+typedef struct _pageBlockTitle { // 0x70abc3fd
+    RichText text;
+};
+
+typedef struct _pageBlockDetails { // 0x76768bed
+    int b_open : 1; // 0
+    int : 31;
+    VectorPageBlock blocks;
+    RichText title;
+};
+
+typedef struct _pageBlockVideo { // 0x7c8fe7b6
+    int b_autoplay : 1; // 0
+    int b_loop : 1; // 1
+    int : 30;
+    int64 video_id;
+    PageCaption caption;
+};
+
+typedef struct PageBlock {
+    int id;
+    if (id == -2143067670)
+        _pageBlockAudio val;
+    else if (id == -1879401953)
+        _pageBlockSubtitle val;
+    else if (id == -1702174239)
+        _pageBlockOrderedList val;
+    else if (id == -1538310410)
+        _pageBlockMap val;
+    else if (id == -1468953147)
+        _pageBlockEmbed val;
+    else if (id == -1162877472)
+        _pageBlockAuthorDate val;
+    else if (id == -1085412734)
+        _pageBlockTable val;
+    else if (id == -1076861716)
+        _pageBlockHeader val;
+    else if (id == -1066346178)
+        _pageBlockPreformatted val;
+    else if (id == -837994576)
+        _pageBlockAnchor val;
+    else if (id == -618614392)
+        _pageBlockDivider val;
+    else if (id == -454524911)
+        _pageBlockList val;
+    else if (id == -283684427)
+        _pageBlockChannel val;
+    else if (id == -248793375)
+        _pageBlockSubheader val;
+    else if (id == -229005301)
+        _pageBlockEmbedPost val;
+    else if (id == 52401552)
+        _pageBlockSlideshow val;
+    else if (id == 324435594)
+        _pageBlockUnsupported val;
+    else if (id == 370236054)
+        _pageBlockRelatedArticles val;
+    else if (id == 391759200)
+        _pageBlockPhoto val;
+    else if (id == 504660880)
+        _pageBlockKicker val;
+    else if (id == 641563686)
+        _pageBlockBlockquote val;
+    else if (id == 972174080)
+        _pageBlockCover val;
+    else if (id == 1182402406)
+        _pageBlockParagraph val;
+    else if (id == 1216809369)
+        _pageBlockFooter val;
+    else if (id == 1329878739)
+        _pageBlockPullquote val;
+    else if (id == 1705048653)
+        _pageBlockCollage val;
+    else if (id == 1890305021)
+        _pageBlockTitle val;
+    else if (id == 1987480557)
+        _pageBlockDetails val;
+    else if (id == 2089805750)
+        _pageBlockVideo val;
+    else {
+        Printf("Invalid id %d for PageBlock", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPageBlock {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPageBlock\n", id);
+        Exit(1);
+    }
+    int size;
+    PageBlock items[size] <optimize=false>;
+};
+#endif

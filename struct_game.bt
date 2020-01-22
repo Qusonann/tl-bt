@@ -1,0 +1,37 @@
+#ifndef __STRUCT_GAME__
+#define __STRUCT_GAME__
+#include "struct_photo.bt"
+#include "struct_document.bt"
+typedef struct _game { // 0xbdf9653b
+    int b_document : 1; // 0
+    int : 31;
+    int64 id;
+    int64 access_hash;
+    TLString short_name;
+    TLString title;
+    TLString description;
+    Photo photo;
+    if (b_document)
+        Document document;
+};
+
+typedef struct Game {
+    int id;
+    if (id == -1107729093)
+        _game val;
+    else {
+        Printf("Invalid id %d for Game", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorGame {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorGame\n", id);
+        Exit(1);
+    }
+    int size;
+    Game items[size] <optimize=false>;
+};
+#endif

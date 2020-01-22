@@ -1,0 +1,43 @@
+#ifndef __STRUCT_PAGERELATEDARTICLE__
+#define __STRUCT_PAGERELATEDARTICLE__
+typedef struct _pageRelatedArticle { // 0xb390dc08
+    int b_title : 1; // 0
+    int b_description : 1; // 1
+    int b_photo_id : 1; // 2
+    int b_author : 1; // 3
+    int b_published_date : 1; // 4
+    int : 27;
+    TLString url;
+    int64 webpage_id;
+    if (b_title)
+        TLString title;
+    if (b_description)
+        TLString description;
+    if (b_photo_id)
+        int64 photo_id;
+    if (b_author)
+        TLString author;
+    if (b_published_date)
+        int published_date;
+};
+
+typedef struct PageRelatedArticle {
+    int id;
+    if (id == -1282352120)
+        _pageRelatedArticle val;
+    else {
+        Printf("Invalid id %d for PageRelatedArticle", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPageRelatedArticle {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPageRelatedArticle\n", id);
+        Exit(1);
+    }
+    int size;
+    PageRelatedArticle items[size] <optimize=false>;
+};
+#endif

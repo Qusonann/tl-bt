@@ -1,0 +1,31 @@
+#ifndef __STRUCT_POLL__
+#define __STRUCT_POLL__
+#include "struct_pollanswer.bt"
+typedef struct _poll { // 0xd5529d06
+    int b_closed : 1; // 0
+    int : 31;
+    int64 id;
+    TLString question;
+    VectorPollAnswer answers;
+};
+
+typedef struct Poll {
+    int id;
+    if (id == -716006138)
+        _poll val;
+    else {
+        Printf("Invalid id %d for Poll", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPoll {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPoll\n", id);
+        Exit(1);
+    }
+    int size;
+    Poll items[size] <optimize=false>;
+};
+#endif

@@ -1,0 +1,32 @@
+#ifndef __STRUCT_SECUREPLAINDATA__
+#define __STRUCT_SECUREPLAINDATA__
+typedef struct _securePlainEmail { // 0x21ec5a5f
+    TLString email;
+};
+
+typedef struct _securePlainPhone { // 0x7d6099dd
+    TLString phone;
+};
+
+typedef struct SecurePlainData {
+    int id;
+    if (id == 569137759)
+        _securePlainEmail val;
+    else if (id == 2103482845)
+        _securePlainPhone val;
+    else {
+        Printf("Invalid id %d for SecurePlainData", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorSecurePlainData {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorSecurePlainData\n", id);
+        Exit(1);
+    }
+    int size;
+    SecurePlainData items[size] <optimize=false>;
+};
+#endif

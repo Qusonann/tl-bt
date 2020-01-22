@@ -1,0 +1,54 @@
+#ifndef __STRUCT_SECUREVALUE__
+#define __STRUCT_SECUREVALUE__
+
+#include "struct_securedata.bt"
+#include "struct_securefile.bt"
+#include "struct_secureplaindata.bt"
+
+typedef struct _secureValue { // 0x187fa0ca
+    int b_data : 1; // 0
+    int b_front_side : 1; // 1
+    int b_reverse_side : 1; // 2
+    int b_selfie : 1; // 3
+    int b_files : 1; // 4
+    int b_plain_data : 1; // 5
+    int b_translation : 1; // 6
+    int : 25;
+    SecureValueType type;
+    if (b_data)
+        SecureData data;
+    if (b_front_side)
+        SecureFile front_side;
+    if (b_reverse_side)
+        SecureFile reverse_side;
+    if (b_selfie)
+        SecureFile selfie;
+    if (b_translation)
+        VectorSecureFile translation;
+    if (b_files)
+        VectorSecureFile files;
+    if (b_plain_data)
+        SecurePlainData plain_data;
+    bytes hash;
+};
+
+typedef struct SecureValue {
+    int id;
+    if (id == 411017418)
+        _secureValue val;
+    else {
+        Printf("Invalid id %d for SecureValue", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorSecureValue {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorSecureValue\n", id);
+        Exit(1);
+    }
+    int size;
+    SecureValue items[size] <optimize=false>;
+};
+#endif

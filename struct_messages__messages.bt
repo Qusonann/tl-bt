@@ -1,0 +1,66 @@
+#ifndef __STRUCT_MESSAGES__MESSAGES__
+#define __STRUCT_MESSAGES__MESSAGES__
+
+#include "struct_user.bt"
+#include "struct_message.bt"
+#include "struct_chat.bt"
+
+typedef struct _messages__messages { // 0x8c718e87
+    VectorMessage messages;
+    VectorChat chats;
+    VectorUser users;
+};
+
+typedef struct _messages__channelMessages { // 0x99262e37
+    int : 1;
+    int b_inexact : 1; // 1
+    int : 30;
+    int pts;
+    int count;
+    VectorMessage messages;
+    VectorChat chats;
+    VectorUser users;
+};
+
+typedef struct _messages__messagesSlice { // 0xc8edce1e
+    int b_next_rate : 1; // 0
+    int b_inexact : 1; // 1
+    int : 30;
+    int count;
+    if (b_next_rate)
+        int next_rate;
+    VectorMessage messages;
+    VectorChat chats;
+    VectorUser users;
+};
+
+typedef struct _messages__messagesNotModified { // 0x74535f21
+    int count;
+};
+
+typedef struct messages__Messages {
+    int id;
+    if (id == -1938715001)
+        _messages__messages val;
+    else if (id == -1725551049)
+        _messages__channelMessages val;
+    else if (id == -923939298)
+        _messages__messagesSlice val;
+    else if (id == 1951620897)
+        _messages__messagesNotModified val;
+    else {
+        Printf("Invalid id %d for messages__Messages", id);
+        Exit(1);
+    }
+};
+
+typedef struct Vectormessages__Messages {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for Vectormessages__Messages\n", id);
+        Exit(1);
+    }
+    int size;
+    messages__Messages items[size] <optimize=false>;
+};
+#endif

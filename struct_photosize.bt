@@ -39,8 +39,10 @@ typedef struct PhotoSize {
         _photoSizeEmpty val;
     else if (id == 2009052699)
         _photoSize val;
-    else
+    else {
+        Printf("Invalid id %d for PhotoSize\n", id);
         Exit(1);
+    }
 };
 
 #endif

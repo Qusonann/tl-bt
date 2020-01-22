@@ -1,0 +1,34 @@
+#ifndef __STRUCT_POLLRESULTS__
+#define __STRUCT_POLLRESULTS__
+#include "struct_pollanswervoters.bt"
+typedef struct _pollResults { // 0x5755785a
+    int b_min : 1; // 0
+    int b_results : 1; // 1
+    int b_total_voters : 1; // 2
+    int : 29;
+    if (b_results)
+        VectorPollAnswerVoters results;
+    if (b_total_voters)
+        int total_voters;
+};
+
+typedef struct PollResults {
+    int id;
+    if (id == 1465219162)
+        _pollResults val;
+    else {
+        Printf("Invalid id %d for PollResults", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPollResults {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPollResults\n", id);
+        Exit(1);
+    }
+    int size;
+    PollResults items[size] <optimize=false>;
+};
+#endif

@@ -1,0 +1,27 @@
+#ifndef __STRUCT_PAYMENTCHARGE__
+#define __STRUCT_PAYMENTCHARGE__
+typedef struct _paymentCharge { // 0xea02c27e
+    TLString id;
+    TLString provider_charge_id;
+};
+
+typedef struct PaymentCharge {
+    int id;
+    if (id == -368917890)
+        _paymentCharge val;
+    else {
+        Printf("Invalid id %d for PaymentCharge", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPaymentCharge {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPaymentCharge\n", id);
+        Exit(1);
+    }
+    int size;
+    PaymentCharge items[size] <optimize=false>;
+};
+#endif

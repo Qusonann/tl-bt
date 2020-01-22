@@ -73,6 +73,16 @@ typedef struct bytes {
     };
 };
 
+typedef struct VectorInt {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid VectorInt id %d\n", id);
+        Exit(1);
+    }
+    int size;
+    int items[size];
+};
+
 typedef struct VectorLong {
     int id;
     if (id != 0x1CB5C415) {

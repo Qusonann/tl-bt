@@ -1,0 +1,29 @@
+#ifndef __STRUCT_MASKCOORDS__
+#define __STRUCT_MASKCOORDS__
+typedef struct _maskCoords { // 0xaed6dbb2
+    int n;
+    double x;
+    double y;
+    double zoom;
+};
+
+typedef struct MaskCoords {
+    int id;
+    if (id == -1361650766)
+        _maskCoords val;
+    else {
+        Printf("Invalid id %d for MaskCoords", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorMaskCoords {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorMaskCoords\n", id);
+        Exit(1);
+    }
+    int size;
+    MaskCoords items[size] <optimize=false>;
+};
+#endif

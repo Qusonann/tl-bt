@@ -1,3 +1,6 @@
+#ifndef __STRUCT_GEOPOINT__
+#define __STRUCT_GEOPOINT__
+
 typedef struct _geoPoint { // 0x296f104
     double _long;
     double lat;
@@ -17,3 +20,4 @@ typedef struct GeoPoint {
         Exit(1);
 };
 
+#endif

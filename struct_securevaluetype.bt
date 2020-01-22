@@ -1,0 +1,85 @@
+#ifndef __STRUCT_SECUREVALUETYPE__
+#define __STRUCT_SECUREVALUETYPE__
+typedef struct _secureValueTypeBankStatement { // 0x89137c0d
+};
+
+typedef struct _secureValueTypeRentalAgreement { // 0x8b883488
+};
+
+typedef struct _secureValueTypeEmail { // 0x8e3ca7ee
+};
+
+typedef struct _secureValueTypeInternalPassport { // 0x99a48f23
+};
+
+typedef struct _secureValueTypePassportRegistration { // 0x99e3806a
+};
+
+typedef struct _secureValueTypePersonalDetails { // 0x9d2a81e3
+};
+
+typedef struct _secureValueTypeIdentityCard { // 0xa0d0744b
+};
+
+typedef struct _secureValueTypePhone { // 0xb320aadb
+};
+
+typedef struct _secureValueTypeAddress { // 0xcbe31e26
+};
+
+typedef struct _secureValueTypeTemporaryRegistration { // 0xea02ec33
+};
+
+typedef struct _secureValueTypeUtilityBill { // 0xfc36954e
+};
+
+typedef struct _secureValueTypeDriverLicense { // 0x6e425c4
+};
+
+typedef struct _secureValueTypePassport { // 0x3dac6a00
+};
+
+typedef struct SecureValueType {
+    int id;
+    if (id == -1995211763)
+        _secureValueTypeBankStatement val;
+    else if (id == -1954007928)
+        _secureValueTypeRentalAgreement val;
+    else if (id == -1908627474)
+        _secureValueTypeEmail val;
+    else if (id == -1717268701)
+        _secureValueTypeInternalPassport val;
+    else if (id == -1713143702)
+        _secureValueTypePassportRegistration val;
+    else if (id == -1658158621)
+        _secureValueTypePersonalDetails val;
+    else if (id == -1596951477)
+        _secureValueTypeIdentityCard val;
+    else if (id == -1289704741)
+        _secureValueTypePhone val;
+    else if (id == -874308058)
+        _secureValueTypeAddress val;
+    else if (id == -368907213)
+        _secureValueTypeTemporaryRegistration val;
+    else if (id == -63531698)
+        _secureValueTypeUtilityBill val;
+    else if (id == 115615172)
+        _secureValueTypeDriverLicense val;
+    else if (id == 1034709504)
+        _secureValueTypePassport val;
+    else {
+        Printf("Invalid id %d for SecureValueType", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorSecureValueType {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorSecureValueType\n", id);
+        Exit(1);
+    }
+    int size;
+    SecureValueType items[size] <optimize=false>;
+};
+#endif

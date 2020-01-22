@@ -1,0 +1,36 @@
+#ifndef __STRUCT_PAGE__
+#define __STRUCT_PAGE__
+#include "struct_pageblock.bt"
+#include "struct_photo.bt"
+#include "struct_document.bt"
+typedef struct _page { // 0xae891bec
+    int b_part : 1; // 0
+    int b_rtl : 1; // 1
+    int b_v2 : 1; // 2
+    int : 29;
+    TLString url;
+    VectorPageBlock blocks;
+    VectorPhoto photos;
+    VectorDocument documents;
+};
+
+typedef struct Page {
+    int id;
+    if (id == -1366746132)
+        _page val;
+    else {
+        Printf("Invalid id %d for Page", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPage {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPage\n", id);
+        Exit(1);
+    }
+    int size;
+    Page items[size] <optimize=false>;
+};
+#endif

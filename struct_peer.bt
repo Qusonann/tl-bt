@@ -21,14 +21,18 @@ typedef struct Peer {
         _peerChat val;
     else if (id == -1109531342)
         _peerChannel val;
-    else
+    else {
+        Printf("Invalid id %d for Peer\n", id);
         Exit(1);
+    }
 };
 
 typedef struct VectorPeer {
     int id;
-    if (id != 0x1CB5C415)
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPeer\n", id);
         Exit(1);
+    }
     int size;
     Peer items[size] <optimize=false>;
 };

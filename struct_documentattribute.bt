@@ -1,0 +1,86 @@
+#ifndef __STRUCT_DOCUMENTATTRIBUTE__
+#define __STRUCT_DOCUMENTATTRIBUTE__
+#include "struct_inputstickerset.bt"
+#include "struct_maskcoords.bt"
+typedef struct _documentAttributeHasStickers { // 0x9801d2f7
+};
+
+typedef struct _documentAttributeAudio { // 0x9852f9c6
+    int b_title : 1; // 0
+    int b_performer : 1; // 1
+    int b_waveform : 1; // 2
+    int : 7;
+    int b_voice : 1; // 10
+    int : 21;
+    int duration;
+    if (b_title)
+        TLString title;
+    if (b_performer)
+        TLString performer;
+    if (b_waveform)
+        bytes waveform;
+};
+
+typedef struct _documentAttributeVideo { // 0xef02ce6
+    int b_round_message : 1; // 0
+    int b_supports_streaming : 1; // 1
+    int : 30;
+    int duration;
+    int w;
+    int h;
+};
+
+typedef struct _documentAttributeAnimated { // 0x11b58939
+};
+
+typedef struct _documentAttributeFilename { // 0x15590068
+    TLString file_name;
+};
+
+typedef struct _documentAttributeSticker { // 0x6319d612
+    int b_mask_coords : 1; // 0
+    int b_mask : 1; // 1
+    int : 30;
+    TLString alt;
+    InputStickerSet stickerset;
+    if (b_mask_coords)
+        MaskCoords mask_coords;
+};
+
+typedef struct _documentAttributeImageSize { // 0x6c37c15c
+    int w;
+    int h;
+};
+
+typedef struct DocumentAttribute {
+    int id;
+    if (id == -1744710921)
+        _documentAttributeHasStickers val;
+    else if (id == -1739392570)
+        _documentAttributeAudio val;
+    else if (id == 250621158)
+        _documentAttributeVideo val;
+    else if (id == 297109817)
+        _documentAttributeAnimated val;
+    else if (id == 358154344)
+        _documentAttributeFilename val;
+    else if (id == 1662637586)
+        _documentAttributeSticker val;
+    else if (id == 1815593308)
+        _documentAttributeImageSize val;
+    else {
+        Printf("Invalid id %d for DocumentAttribute", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorDocumentAttribute {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorDocumentAttribute\n", id);
+        Exit(1);
+    }
+    int size;
+    DocumentAttribute items[size] <optimize=false>;
+};
+#endif

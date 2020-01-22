@@ -1,0 +1,46 @@
+#ifndef __STRUCT_INPUTUSER__
+#define __STRUCT_INPUTUSER__
+#include "struct_inputpeer.bt"
+typedef struct _inputUserEmpty { // 0xb98886cf
+};
+
+typedef struct _inputUser { // 0xd8292816
+    int user_id;
+    int64 access_hash;
+};
+
+typedef struct _inputUserSelf { // 0xf7c1b13f
+};
+
+typedef struct _inputUserFromMessage { // 0x2d117597
+    InputPeer peer;
+    int msg_id;
+    int user_id;
+};
+
+typedef struct InputUser {
+    int id;
+    if (id == -1182234929)
+        _inputUserEmpty val;
+    else if (id == -668391402)
+        _inputUser val;
+    else if (id == -138301121)
+        _inputUserSelf val;
+    else if (id == 756118935)
+        _inputUserFromMessage val;
+    else {
+        Printf("Invalid id %d for InputUser", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorInputUser {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorInputUser\n", id);
+        Exit(1);
+    }
+    int size;
+    InputUser items[size] <optimize=false>;
+};
+#endif

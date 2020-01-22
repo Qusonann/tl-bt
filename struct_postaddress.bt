@@ -1,0 +1,31 @@
+#ifndef __STRUCT_POSTADDRESS__
+#define __STRUCT_POSTADDRESS__
+typedef struct _postAddress { // 0x1e8caaeb
+    TLString street_line1;
+    TLString street_line2;
+    TLString city;
+    TLString state;
+    TLString country_iso2;
+    TLString post_code;
+};
+
+typedef struct PostAddress {
+    int id;
+    if (id == 512535275)
+        _postAddress val;
+    else {
+        Printf("Invalid id %d for PostAddress", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPostAddress {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPostAddress\n", id);
+        Exit(1);
+    }
+    int size;
+    PostAddress items[size] <optimize=false>;
+};
+#endif

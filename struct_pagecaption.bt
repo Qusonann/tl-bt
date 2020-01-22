@@ -1,0 +1,28 @@
+#ifndef __STRUCT_PAGECAPTION__
+#define __STRUCT_PAGECAPTION__
+#include "struct_richtext.bt"
+typedef struct _pageCaption { // 0x6f747657
+    RichText text;
+    RichText credit;
+};
+
+typedef struct PageCaption {
+    int id;
+    if (id == 1869903447)
+        _pageCaption val;
+    else {
+        Printf("Invalid id %d for PageCaption", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPageCaption {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPageCaption\n", id);
+        Exit(1);
+    }
+    int size;
+    PageCaption items[size] <optimize=false>;
+};
+#endif

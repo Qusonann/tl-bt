@@ -30,20 +30,8 @@ FSeek(0);
 #include "struct_photolayer82.bt"
 #include "struct_contacts__Found.bt"
 #include "struct_restrictionreason.bt"
+#include "struct_messages__messages.bt"
 
-
-typedef struct unknown_3f0f220f {
-    int flags;
-    User __user;
-    ContactsLink link; // ContactsMyLink in fact
-    if (flags & 4) {
-        PhotoLayer82 photo;
-    }
-    if (flags & 16) {
-        PeerNotifySettings settings;
-    }
-    int unknown;
-};
 
 typedef struct Object {
     int objectId;
@@ -51,8 +39,6 @@ typedef struct Object {
         _rpc_result data;
     else if (objectId == 1658238041) // msgs_ack
         _msgs_ack data;
-    else if (objectId == 253890367) // unknown_3f0f220f
-        unknown_3f0f220f data;
     else if (objectId == 773059779) // user
         _user data;
     else if (objectId == 986597452) // contactsLink
@@ -73,6 +59,14 @@ typedef struct Object {
         _contacts__found val;
     else if (objectId == -797791052)
         _restrictionReason val;
+    else if (objectId == -1938715001)
+        _messages__messages val;
+    else if (objectId == -1725551049)
+        _messages__channelMessages val;
+    else if (objectId == -923939298)
+        _messages__messagesSlice val;
+    else if (objectId == 1951620897)
+        _messages__messagesNotModified val;
     else {
         Printf("Unknown object %d\n", objectId);
         Exit(1);

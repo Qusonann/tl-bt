@@ -1,0 +1,27 @@
+#ifndef __STRUCT_POLLANSWER__
+#define __STRUCT_POLLANSWER__
+typedef struct _pollAnswer { // 0x6ca9c2e9
+    TLString text;
+    bytes option;
+};
+
+typedef struct PollAnswer {
+    int id;
+    if (id == 1823064809)
+        _pollAnswer val;
+    else {
+        Printf("Invalid id %d for PollAnswer", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPollAnswer {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPollAnswer\n", id);
+        Exit(1);
+    }
+    int size;
+    PollAnswer items[size] <optimize=false>;
+};
+#endif

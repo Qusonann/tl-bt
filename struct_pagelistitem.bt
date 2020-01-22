@@ -1,0 +1,35 @@
+#ifndef __STRUCT_PAGELISTITEM__
+#define __STRUCT_PAGELISTITEM__
+#include "struct_richtext.bt"
+#include "struct_pageblock.bt"
+
+typedef struct _pageListItemText { // 0xb92fb6cd
+    RichText text;
+};
+
+typedef struct _pageListItemBlocks { // 0x25e073fc
+    VectorPageBlock blocks;
+};
+
+typedef struct PageListItem {
+    int id;
+    if (id == -1188055347)
+        _pageListItemText val;
+    else if (id == 635466748)
+        _pageListItemBlocks val;
+    else {
+        Printf("Invalid id %d for PageListItem", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPageListItem {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPageListItem\n", id);
+        Exit(1);
+    }
+    int size;
+    PageListItem items[size] <optimize=false>;
+};
+#endif

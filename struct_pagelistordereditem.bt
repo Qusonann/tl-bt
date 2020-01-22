@@ -1,0 +1,37 @@
+#ifndef __STRUCT_PAGELISTORDEREDITEM__
+#define __STRUCT_PAGELISTORDEREDITEM__
+#include "struct_pageblock.bt"
+#include "struct_richtext.bt"
+
+typedef struct _pageListOrderedItemBlocks { // 0x98dd8936
+    TLString num;
+    VectorPageBlock blocks;
+};
+
+typedef struct _pageListOrderedItemText { // 0x5e068047
+    TLString num;
+    RichText text;
+};
+
+typedef struct PageListOrderedItem {
+    int id;
+    if (id == -1730311882)
+        _pageListOrderedItemBlocks val;
+    else if (id == 1577484359)
+        _pageListOrderedItemText val;
+    else {
+        Printf("Invalid id %d for PageListOrderedItem", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPageListOrderedItem {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPageListOrderedItem\n", id);
+        Exit(1);
+    }
+    int size;
+    PageListOrderedItem items[size] <optimize=false>;
+};
+#endif

@@ -1,0 +1,91 @@
+#ifndef __STRUCT_WEBPAGE__
+#define __STRUCT_WEBPAGE__
+#include "struct_photo.bt"
+#include "struct_document.bt"
+#include "struct_page.bt"
+typedef struct _webPageNotModified { // 0x85849473
+};
+
+typedef struct _webPagePending { // 0xc586da1c
+    int64 id;
+    int date;
+};
+
+typedef struct _webPageEmpty { // 0xeb1477e8
+    int64 id;
+};
+
+typedef struct _webPage { // 0xfa64e172
+    int b_type : 1; // 0
+    int b_site_name : 1; // 1
+    int b_title : 1; // 2
+    int b_description : 1; // 3
+    int b_photo : 1; // 4
+    int b_embed_type : 1; // 5
+    int b_embed_height : 1; // 6
+    int b_duration : 1; // 7
+    int b_author : 1; // 8
+    int b_document : 1; // 9
+    int b_cached_page : 1; // 10
+    int b_documents : 1; // 11
+    int : 20;
+    int64 id;
+    TLString url;
+    TLString display_url;
+    int hash;
+    if (b_type)
+        TLString type;
+    if (b_site_name)
+        TLString site_name;
+    if (b_title)
+        TLString title;
+    if (b_description)
+        TLString description;
+    if (b_photo)
+        Photo photo;
+    if (b_embed_url)
+        TLString embed_url;
+    if (b_embed_type)
+        TLString embed_type;
+    if (b_embed_width)
+        int embed_width;
+    if (b_embed_height)
+        int embed_height;
+    if (b_duration)
+        int duration;
+    if (b_author)
+        TLString author;
+    if (b_document)
+        Document document;
+    if (b_documents)
+        VectorDocument documents;
+    if (b_cached_page)
+        Page cached_page;
+};
+
+typedef struct WebPage {
+    int id;
+    if (id == -2054908813)
+        _webPageNotModified val;
+    else if (id == -981018084)
+        _webPagePending val;
+    else if (id == -350980120)
+        _webPageEmpty val;
+    else if (id == -94051982)
+        _webPage val;
+    else {
+        Printf("Invalid id %d for WebPage", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorWebPage {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorWebPage\n", id);
+        Exit(1);
+    }
+    int size;
+    WebPage items[size] <optimize=false>;
+};
+#endif

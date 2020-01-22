@@ -1,0 +1,43 @@
+#ifndef __STRUCT_INPUTSTICKERSET__
+#define __STRUCT_INPUTSTICKERSET__
+typedef struct _inputStickerSetShortName { // 0x861cc8a0
+    TLString short_name;
+};
+
+typedef struct _inputStickerSetID { // 0x9de7a269
+    int64 id;
+    int64 access_hash;
+};
+
+typedef struct _inputStickerSetEmpty { // 0xffb62b95
+};
+
+typedef struct _inputStickerSetAnimatedEmoji { // 0x28703c8
+};
+
+typedef struct InputStickerSet {
+    int id;
+    if (id == -2044933984)
+        _inputStickerSetShortName val;
+    else if (id == -1645763991)
+        _inputStickerSetID val;
+    else if (id == -4838507)
+        _inputStickerSetEmpty val;
+    else if (id == 42402760)
+        _inputStickerSetAnimatedEmoji val;
+    else {
+        Printf("Invalid id %d for InputStickerSet", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorInputStickerSet {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorInputStickerSet\n", id);
+        Exit(1);
+    }
+    int size;
+    InputStickerSet items[size] <optimize=false>;
+};
+#endif

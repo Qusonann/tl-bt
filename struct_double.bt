@@ -1,0 +1,3 @@
+#ifndef __STRUCT_DOUBLE__
+#define __STRUCT_DOUBLE__
+#endif

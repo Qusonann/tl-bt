@@ -1,0 +1,41 @@
+#ifndef __STRUCT_PAGETABLECELL__
+#define __STRUCT_PAGETABLECELL__
+#include "struct_richtext.bt"
+typedef struct _pageTableCell { // 0x34566b6a
+    int b_header : 1; // 0
+    int b_colspan : 1; // 1
+    int b_rowspan : 1; // 2
+    int b_align_center : 1; // 3
+    int b_align_right : 1; // 4
+    int b_valign_middle : 1; // 5
+    int b_valign_bottom : 1; // 6
+    int b_text : 1; // 7
+    int : 24;
+    if (b_text)
+        RichText text;
+    if (b_colspan)
+        int colspan;
+    if (b_rowspan)
+        int rowspan;
+};
+
+typedef struct PageTableCell {
+    int id;
+    if (id == 878078826)
+        _pageTableCell val;
+    else {
+        Printf("Invalid id %d for PageTableCell", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPageTableCell {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPageTableCell\n", id);
+        Exit(1);
+    }
+    int size;
+    PageTableCell items[size] <optimize=false>;
+};
+#endif

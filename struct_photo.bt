@@ -30,5 +30,13 @@ typedef struct Photo {
         Exit(1);
 };
 
-
+typedef struct VectorPhoto {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPhoto\n", id);
+        Exit(1);
+    }
+    int size;
+    Photo items[size] <optimize=false>;
+};
 #endif

@@ -1,0 +1,124 @@
+#ifndef __STRUCT_RICHTEXT__
+#define __STRUCT_RICHTEXT__
+struct RichText;
+struct VectorRichText;
+typedef struct _textStrike { // 0x9bf8bb95
+    RichText text;
+};
+
+typedef struct _textUnderline { // 0xc12622c4
+    RichText text;
+};
+
+typedef struct _textSuperscript { // 0xc7fb5e01
+    RichText text;
+};
+
+typedef struct _textItalic { // 0xd912a59c
+    RichText text;
+};
+
+typedef struct _textEmpty { // 0xdc3d824f
+};
+
+typedef struct _textEmail { // 0xde5a0dd6
+    RichText text;
+    TLString email;
+};
+
+typedef struct _textSubscript { // 0xed6a8504
+    RichText text;
+};
+
+typedef struct _textMarked { // 0x34b8621
+    RichText text;
+};
+
+typedef struct _textImage { // 0x81ccf4f
+    int64 document_id;
+    int w;
+    int h;
+};
+
+typedef struct _textPhone { // 0x1ccb966a
+    RichText text;
+    TLString phone;
+};
+
+typedef struct _textAnchor { // 0x35553762
+    RichText text;
+    TLString name;
+};
+
+typedef struct _textUrl { // 0x3c2884c1
+    RichText text;
+    TLString url;
+    int64 webpage_id;
+};
+
+typedef struct _textBold { // 0x6724abc4
+    RichText text;
+};
+
+typedef struct _textFixed { // 0x6c3f19b9
+    RichText text;
+};
+
+typedef struct _textPlain { // 0x744694e0
+    TLString text;
+};
+
+typedef struct _textConcat { // 0x7e6260d7
+    VectorRichText texts;
+};
+
+typedef struct RichText {
+    int id;
+    if (id == -1678197867)
+        _textStrike val;
+    else if (id == -1054465340)
+        _textUnderline val;
+    else if (id == -939827711)
+        _textSuperscript val;
+    else if (id == -653089380)
+        _textItalic val;
+    else if (id == -599948721)
+        _textEmpty val;
+    else if (id == -564523562)
+        _textEmail val;
+    else if (id == -311786236)
+        _textSubscript val;
+    else if (id == 55281185)
+        _textMarked val;
+    else if (id == 136105807)
+        _textImage val;
+    else if (id == 483104362)
+        _textPhone val;
+    else if (id == 894777186)
+        _textAnchor val;
+    else if (id == 1009288385)
+        _textUrl val;
+    else if (id == 1730456516)
+        _textBold val;
+    else if (id == 1816074681)
+        _textFixed val;
+    else if (id == 1950782688)
+        _textPlain val;
+    else if (id == 2120376535)
+        _textConcat val;
+    else {
+        Printf("Invalid id %d for RichText", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorRichText {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorRichText\n", id);
+        Exit(1);
+    }
+    int size;
+    RichText items[size] <optimize=false>;
+};
+#endif

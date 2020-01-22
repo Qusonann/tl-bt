@@ -1,0 +1,40 @@
+#ifndef __STRUCT_WEBDOCUMENT__
+#define __STRUCT_WEBDOCUMENT__
+#include "struct_documentattribute.bt"
+typedef struct _webDocumentNoProxy { // 0xf9c8bcc6
+    TLString url;
+    int size;
+    TLString mime_type;
+    VectorDocumentAttribute attributes;
+};
+
+typedef struct _webDocument { // 0x1c570ed1
+    TLString url;
+    int64 access_hash;
+    int size;
+    TLString mime_type;
+    VectorDocumentAttribute attributes;
+};
+
+typedef struct WebDocument {
+    int id;
+    if (id == -104284986)
+        _webDocumentNoProxy val;
+    else if (id == 475467473)
+        _webDocument val;
+    else {
+        Printf("Invalid id %d for WebDocument", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorWebDocument {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorWebDocument\n", id);
+        Exit(1);
+    }
+    int size;
+    WebDocument items[size] <optimize=false>;
+};
+#endif

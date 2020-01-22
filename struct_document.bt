@@ -1,0 +1,45 @@
+#ifndef __STRUCT_DOCUMENT__
+#define __STRUCT_DOCUMENT__
+#include "struct_photosize.bt"
+#include "struct_documentattribute.bt"
+typedef struct _document { // 0x9ba29cc1
+    int b_thumbs : 1; // 0
+    int : 31;
+    int64 id;
+    int64 access_hash;
+    bytes file_reference;
+    int date;
+    TLString mime_type;
+    int size;
+    if (b_thumbs)
+        VectorPhotoSize thumbs;
+    int dc_id;
+    VectorDocumentAttribute attributes;
+};
+
+typedef struct _documentEmpty { // 0x36f8c871
+    int64 id;
+};
+
+typedef struct Document {
+    int id;
+    if (id == -1683841855)
+        _document val;
+    else if (id == 922273905)
+        _documentEmpty val;
+    else {
+        Printf("Invalid id %d for Document", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorDocument {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorDocument\n", id);
+        Exit(1);
+    }
+    int size;
+    Document items[size] <optimize=false>;
+};
+#endif

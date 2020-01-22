@@ -1,0 +1,29 @@
+#ifndef __STRUCT_POLLANSWERVOTERS__
+#define __STRUCT_POLLANSWERVOTERS__
+typedef struct _pollAnswerVoters { // 0x3b6ddad2
+    int b_chosen : 1; // 0
+    int : 31;
+    bytes option;
+    int voters;
+};
+
+typedef struct PollAnswerVoters {
+    int id;
+    if (id == 997055186)
+        _pollAnswerVoters val;
+    else {
+        Printf("Invalid id %d for PollAnswerVoters", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPollAnswerVoters {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPollAnswerVoters\n", id);
+        Exit(1);
+    }
+    int size;
+    PollAnswerVoters items[size] <optimize=false>;
+};
+#endif

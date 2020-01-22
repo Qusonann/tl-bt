@@ -1,0 +1,40 @@
+#ifndef __STRUCT_PHONECALLDISCARDREASON__
+#define __STRUCT_PHONECALLDISCARDREASON__
+typedef struct _phoneCallDiscardReasonMissed { // 0x85e42301
+};
+
+typedef struct _phoneCallDiscardReasonDisconnect { // 0xe095c1a0
+};
+
+typedef struct _phoneCallDiscardReasonBusy { // 0xfaf7e8c9
+};
+
+typedef struct _phoneCallDiscardReasonHangup { // 0x57adc690
+};
+
+typedef struct PhoneCallDiscardReason {
+    int id;
+    if (id == -2048646399)
+        _phoneCallDiscardReasonMissed val;
+    else if (id == -527056480)
+        _phoneCallDiscardReasonDisconnect val;
+    else if (id == -84416311)
+        _phoneCallDiscardReasonBusy val;
+    else if (id == 1471006352)
+        _phoneCallDiscardReasonHangup val;
+    else {
+        Printf("Invalid id %d for PhoneCallDiscardReason", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPhoneCallDiscardReason {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPhoneCallDiscardReason\n", id);
+        Exit(1);
+    }
+    int size;
+    PhoneCallDiscardReason items[size] <optimize=false>;
+};
+#endif

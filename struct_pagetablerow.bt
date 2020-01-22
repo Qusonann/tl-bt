@@ -1,0 +1,27 @@
+#ifndef __STRUCT_PAGETABLEROW__
+#define __STRUCT_PAGETABLEROW__
+#include "struct_pagetablecell.bt"
+typedef struct _pageTableRow { // 0xe0c0c5e5
+    VectorPageTableCell cells;
+};
+
+typedef struct PageTableRow {
+    int id;
+    if (id == -524237339)
+        _pageTableRow val;
+    else {
+        Printf("Invalid id %d for PageTableRow", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorPageTableRow {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorPageTableRow\n", id);
+        Exit(1);
+    }
+    int size;
+    PageTableRow items[size] <optimize=false>;
+};
+#endif

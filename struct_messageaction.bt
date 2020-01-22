@@ -1,0 +1,183 @@
+#ifndef __STRUCT_MESSAGEACTION__
+#define __STRUCT_MESSAGEACTION__
+
+#include "struct_phonecalldiscardreason.bt"
+#include "struct_paymentrequestedinfo.bt"
+#include "struct_paymentcharge.bt"
+#include "struct_securevaluetype.bt"
+#include "struct_securevalue.bt"
+#include "struct_securecredentialsencrypted.bt"
+
+typedef struct _messageActionPhoneCall { // 0x80e11a7f
+    int b_reason : 1; // 0
+    int b_duration : 1; // 1
+    int b_video : 1; // 2
+    int : 29;
+    int64 call_id;
+    if (b_reason)
+        PhoneCallDiscardReason reason;
+    if (b_duration)
+        int duration;
+};
+
+typedef struct _messageActionPaymentSentMe { // 0x8f31b327
+    int b_info : 1; // 0
+    int b_shipping_option_id : 1; // 1
+    int : 30;
+    TLString currency;
+    int64 total_amount;
+    bytes payload;
+    if (b_info)
+        PaymentRequestedInfo info;
+    if (b_shipping_option_id)
+        TLString shipping_option_id;
+    PaymentCharge charge;
+};
+
+typedef struct _messageActionGameScore { // 0x92a72876
+    int64 game_id;
+    int score;
+};
+
+typedef struct _messageActionPinMessage { // 0x94bd38ed
+};
+
+typedef struct _messageActionChannelCreate { // 0x95d2ac92
+    TLString title;
+};
+
+typedef struct _messageActionChatDeletePhoto { // 0x95e3fbef
+};
+
+typedef struct _messageActionHistoryClear { // 0x9fbab604
+};
+
+typedef struct _messageActionChatCreate { // 0xa6638b9a
+    TLString title;
+    VectorInt users;
+};
+
+typedef struct _messageActionBotAllowed { // 0xabe9affe
+    TLString domain;
+};
+
+typedef struct _messageActionChannelMigrateFrom { // 0xb055eaee
+    TLString title;
+    int chat_id;
+};
+
+typedef struct _messageActionChatDeleteUser { // 0xb2ae9b0c
+    int user_id;
+};
+
+typedef struct _messageActionChatEditTitle { // 0xb5a1ce5a
+    TLString title;
+};
+
+typedef struct _messageActionEmpty { // 0xb6aef7b0
+};
+
+typedef struct _messageActionSecureValuesSent { // 0xd95c6154
+    VectorSecureValueType types;
+};
+
+typedef struct _messageActionContactSignUp { // 0xf3f25f76
+};
+
+typedef struct _messageActionChatJoinedByLink { // 0xf89cf5e8
+    int inviter_id;
+};
+
+typedef struct _messageActionCustomAction { // 0xfae69f56
+    TLString message;
+};
+
+typedef struct _messageActionSecureValuesSentMe { // 0x1b287353
+    VectorSecureValue values;
+    SecureCredentialsEncrypted credentials;
+};
+
+typedef struct _messageActionPaymentSent { // 0x40699cd0
+    TLString currency;
+    int64 total_amount;
+};
+
+typedef struct _messageActionScreenshotTaken { // 0x4792929b
+};
+
+typedef struct _messageActionChatAddUser { // 0x488a7337
+    VectorInt users;
+};
+
+typedef struct _messageActionChatMigrateTo { // 0x51bdb021
+    int channel_id;
+};
+
+typedef struct _messageActionChatEditPhoto { // 0x7fcb13a8
+    Photo photo;
+};
+
+typedef struct MessageAction {
+    int id;
+    if (id == -2132731265)
+        _messageActionPhoneCall val;
+    else if (id == -1892568281)
+        _messageActionPaymentSentMe val;
+    else if (id == -1834538890)
+        _messageActionGameScore val;
+    else if (id == -1799538451)
+        _messageActionPinMessage val;
+    else if (id == -1781355374)
+        _messageActionChannelCreate val;
+    else if (id == -1780220945)
+        _messageActionChatDeletePhoto val;
+    else if (id == -1615153660)
+        _messageActionHistoryClear val;
+    else if (id == -1503425638)
+        _messageActionChatCreate val;
+    else if (id == -1410748418)
+        _messageActionBotAllowed val;
+    else if (id == -1336546578)
+        _messageActionChannelMigrateFrom val;
+    else if (id == -1297179892)
+        _messageActionChatDeleteUser val;
+    else if (id == -1247687078)
+        _messageActionChatEditTitle val;
+    else if (id == -1230047312)
+        _messageActionEmpty val;
+    else if (id == -648257196)
+        _messageActionSecureValuesSent val;
+    else if (id == -202219658)
+        _messageActionContactSignUp val;
+    else if (id == -123931160)
+        _messageActionChatJoinedByLink val;
+    else if (id == -85549226)
+        _messageActionCustomAction val;
+    else if (id == 455635795)
+        _messageActionSecureValuesSentMe val;
+    else if (id == 1080663248)
+        _messageActionPaymentSent val;
+    else if (id == 1200788123)
+        _messageActionScreenshotTaken val;
+    else if (id == 1217033015)
+        _messageActionChatAddUser val;
+    else if (id == 1371385889)
+        _messageActionChatMigrateTo val;
+    else if (id == 2144015272)
+        _messageActionChatEditPhoto val;
+    else {
+        Printf("Invalid id %d for MessageAction", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorMessageAction {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorMessageAction\n", id);
+        Exit(1);
+    }
+    int size;
+    MessageAction items[size] <optimize=false>;
+};
+#endif

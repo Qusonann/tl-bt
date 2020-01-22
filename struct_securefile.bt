@@ -1,0 +1,37 @@
+#ifndef __STRUCT_SECUREFILE__
+#define __STRUCT_SECUREFILE__
+typedef struct _secureFile { // 0xe0277a62
+    int64 id;
+    int64 access_hash;
+    int size;
+    int dc_id;
+    int date;
+    bytes file_hash;
+    bytes secret;
+};
+
+typedef struct _secureFileEmpty { // 0x64199744
+};
+
+typedef struct SecureFile {
+    int id;
+    if (id == -534283678)
+        _secureFile val;
+    else if (id == 1679398724)
+        _secureFileEmpty val;
+    else {
+        Printf("Invalid id %d for SecureFile", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorSecureFile {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorSecureFile\n", id);
+        Exit(1);
+    }
+    int size;
+    SecureFile items[size] <optimize=false>;
+};
+#endif

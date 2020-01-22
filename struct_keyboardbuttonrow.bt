@@ -1,0 +1,27 @@
+#ifndef __STRUCT_KEYBOARDBUTTONROW__
+#define __STRUCT_KEYBOARDBUTTONROW__
+#include "struct_keyboardbutton.bt"
+typedef struct _keyboardButtonRow { // 0x77608b83
+    VectorKeyboardButton buttons;
+};
+
+typedef struct KeyboardButtonRow {
+    int id;
+    if (id == 2002815875)
+        _keyboardButtonRow val;
+    else {
+        Printf("Invalid id %d for KeyboardButtonRow", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorKeyboardButtonRow {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorKeyboardButtonRow\n", id);
+        Exit(1);
+    }
+    int size;
+    KeyboardButtonRow items[size] <optimize=false>;
+};
+#endif

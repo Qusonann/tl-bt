@@ -1,0 +1,28 @@
+#ifndef __STRUCT_SECUREDATA__
+#define __STRUCT_SECUREDATA__
+typedef struct _secureData { // 0x8aeabec3
+    bytes data;
+    bytes data_hash;
+    bytes secret;
+};
+
+typedef struct SecureData {
+    int id;
+    if (id == -1964327229)
+        _secureData val;
+    else {
+        Printf("Invalid id %d for SecureData", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorSecureData {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorSecureData\n", id);
+        Exit(1);
+    }
+    int size;
+    SecureData items[size] <optimize=false>;
+};
+#endif

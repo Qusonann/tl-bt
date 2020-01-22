@@ -1,0 +1,54 @@
+#ifndef __STRUCT_REPLYMARKUP__
+#define __STRUCT_REPLYMARKUP__
+#include "struct_keyboardbuttonrow.bt"
+typedef struct _replyKeyboardHide { // 0xa03e5b85
+    int : 2;
+    int b_selective : 1; // 2
+    int : 29;
+};
+
+typedef struct _replyKeyboardForceReply { // 0xf4108aa0
+    int : 1;
+    int b_single_use : 1; // 1
+    int b_selective : 1; // 2
+    int : 29;
+};
+
+typedef struct _replyKeyboardMarkup { // 0x3502758c
+    int b_resize : 1; // 0
+    int b_single_use : 1; // 1
+    int b_selective : 1; // 2
+    int : 29;
+    VectorKeyboardButtonRow rows;
+};
+
+typedef struct _replyInlineMarkup { // 0x48a30254
+    VectorKeyboardButtonRow rows;
+};
+
+typedef struct ReplyMarkup {
+    int id;
+    if (id == -1606526075)
+        _replyKeyboardHide val;
+    else if (id == -200242528)
+        _replyKeyboardForceReply val;
+    else if (id == 889353612)
+        _replyKeyboardMarkup val;
+    else if (id == 1218642516)
+        _replyInlineMarkup val;
+    else {
+        Printf("Invalid id %d for ReplyMarkup", id);
+        Exit(1);
+    }
+};
+
+typedef struct VectorReplyMarkup {
+    int id;
+    if (id != 0x1CB5C415) {
+        Printf("Invalid id %d for VectorReplyMarkup\n", id);
+        Exit(1);
+    }
+    int size;
+    ReplyMarkup items[size] <optimize=false>;
+};
+#endif

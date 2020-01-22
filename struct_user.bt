@@ -2,7 +2,6 @@
 #define __STRUCT_USER__
 
 typedef struct _user {
-    // int flags;
     int b_access_hash : 1; // 0
     int b_first_name : 1;  // 1
     int b_last_name : 1;   // 2
